@@ -61,8 +61,8 @@ const js_scss_dir = 'js/**/*.scss'
 const js_scssw = () => { watch(js_scss_dir, series(js_scssc, bsr)) }
 const js_scssc = () => {
 	return src(js_scss_dir)
-    .pipe(plumber())
-    .pipe(sass({ outputStyle: 'expanded', silenceDeprecations: [ 'legacy-js-api' ] }))
+		.pipe(plumber())
+		.pipe(sass({ outputStyle: 'expanded', silenceDeprecations: [ 'legacy-js-api' ] }))
 		.pipe(cleanCSS())
 		.pipe(rename({ extname: '.min.css' }))
 		.pipe(dest(CONF.static + 'js/'));
@@ -80,29 +80,29 @@ const scssc = () => {
 }
 
 const htmlEscape = html => html.replace(/[&'`"<>]/g, m => {
-  return {
-    '&': '&amp;',
-    "'": '&#x27;',
-    '`': '&#x60;',
-    '"': '&quot;',
-    '<': '&lt;',
-    '>': '&gt;',
-  }[m]
+	return {
+		'&': '&amp;',
+		"'": '&#x27;',
+		'`': '&#x60;',
+		'"': '&quot;',
+		'<': '&lt;',
+		'>': '&gt;',
+	}[m]
 })
 const pug_dir = [ 'pug/**/*.pug', '!pug/_layout/*.pug' ]
 const pugw = () => { watch(pug_dir, series(pugc, bsr)) }
 const pugc = () => {
-  return src(pug_dir)
-    .pipe(plumber())
-    .pipe(pug({
+	return src(pug_dir)
+		.pipe(plumber())
+		.pipe(pug({
 			pretty: true,
 			filters: {
 				html: data => htmlEscape(data),
-				scss: data => _sass.renderSync({ data, silenceDeprecations: [ 'legacy-js-api' ] }).css.toString(),
+				scss: data => _sass.compileString(data).css
 			},
 		}))
-    .pipe(rename({ extname: '.html' }))
-    .pipe(dest(CONF.static))
+		.pipe(rename({ extname: '.html' }))
+		.pipe(dest(CONF.static))
 }
 
 const pug_include_dir = [ 'pug/_layout/*.pug' ]
@@ -119,7 +119,7 @@ const ls = (dir, ret) => {
 		}
 		else {
 			ret.push(p)
-		}  
+		}	
 	})
 	return ret
 }
