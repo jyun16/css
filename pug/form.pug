@@ -1,0 +1,54 @@
+extends ./_layout/navi.pug
+block head
+	script(src='/js/select-pure/select-pure.min.js')
+	link(href='/js/select-pure/select-pure.min.css' rel='stylesheet')
+block vars
+	- const title = 'FORM'
+block contents
+	form
+		.label INPUT
+		input(placeholder='EXAMPLE')
+		.label TEXTAREA
+		textarea(placeholder='EXAMPLE\nEXAMPLE')
+		.label SELECT
+		#select
+		.label RADIO
+		.fv
+			label
+				input(type='radio')
+				span ONE
+			label
+				input(type='radio')
+				span TWO
+			label
+				input(type='radio')
+				span THREE
+		.label CHECKBOX
+		.fv
+			label
+				input(type='checkbox')
+				span ONE
+			label
+				input(type='checkbox')
+				span TWO
+			label
+				input(type='checkbox')
+				span THREE
+		.f-c
+			button.primary SUBMIT
+			button.secondary.ml-2 CANCEL
+	script.
+		new SelectPure('#select', {
+			options: [
+				{ 'label': 'ほげ', 'value': '1' },
+				{ 'label': 'ふが', 'value': '2' },
+				{ 'label': 'ふー', 'value': '3' },
+				{ 'label': 'ばー', 'value': '4' },
+			],
+			value: [ '1', '2', '3' ],
+			multiple: true,
+			autocomplete: true,
+			onChange: v => {
+				console.log(v)
+			},
+		})

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!--script(src='/js/main.min.js')-->
+    <link href="/css/reset.min.css" rel="stylesheet">
+    <link href="/css/main.min.css" rel="stylesheet">
+    <link href="/css/fw.min.css" rel="stylesheet">
+    <title>FORM</title>
+    <script src="/js/select-pure/select-pure.min.js"></script>
+    <link href="/js/select-pure/select-pure.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="modal-bg"></div>
+    <div class="fv">
+      <header class="fm">
+        <div class="f" id="header-left"><a class="header-icon" href=""><span class="material-icons-outlined" id="menu-button">menu</span></a><a class="header-icon" href="/"><img id="logo" src="/favicon.ico"></a><a class="header-icon" href="/"><span class="material-icons-outlined">home</span></a><a class="header-icon" href="/grid.html">Grid</a><a class="header-icon" href="/form.html">Form</a><a class="header-icon" href="/form2.html">Form2</a><a class="header-icon" href="/login.html">Login</a><a class="header-icon" href="/table/body_scroll.html">Table1</a><a class="header-icon" href="/fw.html">FW</a><a class="header-icon" href="/animation.html">Anime</a><a class="header-icon" href="/midashi.html">Midashi</a></div>
+        <div class="f" id="header-right">
+          <div class="header-icon circle-icon">H</div><a class="header-icon" href="/"><span class="material-icons-outlined" id="menu-right-button">more_vert</span></a>
+        </div>
+      </header>
+      <div class="f" id="body">
+        <div id="menu">
+          <div class="item" href="/">
+            <div class="label">
+              <div class="material-icons-outlined">home</div><span>Index</span>
+            </div>
+          </div>
+          <div class="item" href="/grid.html">
+            <div class="label">Grid</div>
+          </div>
+          <div class="item">
+            <div class="label">Sub-1
+              <div class="sub-icon material-icons-outlined"></div>
+            </div>
+            <div class="sub-item-container">
+              <div class="sub-item" href="/">
+                <div class="label">Index</div>
+              </div>
+              <div class="sub-item" href="">
+                <div class="label">Sub-1-2</div>
+              </div>
+              <div class="sub-item" href="">
+                <div class="label">Sub-1-3</div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="label">Sub-2
+              <div class="sub-icon material-icons-outlined"></div>
+            </div>
+            <div class="sub-item-container">
+              <div class="sub-item" href="/grid.html">
+                <div class="label">Grid</div>
+              </div>
+              <div class="sub-item" href="">
+                <div class="label">Sub-2-2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <main>
+          <form>
+            <div class="label">INPUT</div>
+            <input placeholder="EXAMPLE">
+            <div class="label">TEXTAREA</div>
+            <textarea placeholder="EXAMPLE
+EXAMPLE"></textarea>
+            <div class="label">SELECT</div>
+            <div id="select"></div>
+            <div class="label">RADIO</div>
+            <div class="fv">
+              <label>
+                <input type="radio"><span>ONE</span>
+              </label>
+              <label>
+                <input type="radio"><span>TWO</span>
+              </label>
+              <label>
+                <input type="radio"><span>THREE</span>
+              </label>
+            </div>
+            <div class="label">CHECKBOX</div>
+            <div class="fv">
+              <label>
+                <input type="checkbox"><span>ONE</span>
+              </label>
+              <label>
+                <input type="checkbox"><span>TWO</span>
+              </label>
+              <label>
+                <input type="checkbox"><span>THREE</span>
+              </label>
+            </div>
+            <div class="f-c">
+              <button class="primary">SUBMIT</button>
+              <button class="secondary ml-2">CANCEL</button>
+            </div>
+          </form>
+          <script>
+            new SelectPure('#select', {
+            	options: [
+            		{ 'label': 'ほげ', 'value': '1' },
+            		{ 'label': 'ふが', 'value': '2' },
+            		{ 'label': 'ふー', 'value': '3' },
+            		{ 'label': 'ばー', 'value': '4' },
+            	],
+            	value: [ '1', '2', '3' ],
+            	multiple: true,
+            	autocomplete: true,
+            	onChange: v => {
+            		console.log(v)
+            	},
+            })
+          </script>
+        </main>
+        <div id="menu-right">
+          <div class="item f-m" href="/">
+            <div class="label">
+              <div class="material-icons-outlined">home</div><span>Index</span>
+            </div>
+          </div>
+          <div class="item" href="/grid.html">
+            <div class="label">Grid</div>
+          </div>
+          <div class="item f-m" href="/login.html">
+            <div class="label">
+              <div class="material-icons-outlined">login</div><span>Login</span>
+            </div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let menu = false
+      let menuRight = false
+      const modalBgFunc = (close) => {
+      	return (flag=true) => {
+      		if (flag) {
+      			$('#modal-bg').addClass('on')
+      		}
+      		else {
+      			$('#modal-bg').removeClass('on')
+      			$('.open').removeClass('open')
+      			close()
+      		}
+      	}
+      }
+      const menuModalBg = modalBgFunc(() => {
+      	menu = false
+      	menuRight = false
+      })
+      $('#modal-bg').click(function() { menuModalBg(false) })
+      $('#menu-button').click(function() {
+      	menu = !menu
+      	if (menu) {
+      		$('#menu').addClass('open')
+      		menuModalBg()
+      	}
+      	return false
+      })
+      $('#menu-right-button').click(function() {
+      	menuRight = !menuRight
+      	if (menuRight) {
+      		$('#menu-right').addClass('open')
+      		menuModalBg()
+      	}
+      	return false
+      })
+      const openSubMenu = ($item) => {
+      	if ($item.data('open')) {
+      		$item.data('open', false)
+      		$item.find('.sub-item-container').removeClass('open')
+      		$item.find('.sub-icon').removeClass('open')
+      	}
+      	else {
+      		$item.data('open', true)
+      		$item.find('.sub-item-container').addClass('open')
+      		$item.find('.sub-icon').addClass('open')
+      	}
+      }
+      $('.item').click(function() {
+      	const $item = $(this)
+      	const url = $item.attr('href')
+      	if (url) { location.href = url; }
+      	else { openSubMenu($item) }
+      })
+      $('.sub-item').click(function() {
+      	const $item = $(this)
+      	const url = $item.attr('href')
+      	if (url) { location.href = url; }
+      })
+      const menuActive = () => {
+      	const path = location.pathname
+      	$(`a.header-icon[href='${path}']`).addClass('active')
+      	$(`.item[href='${path}']`).addClass('active')
+      	openSubMenu($(`.sub-item[href='${path}']`).addClass('active').parent().parent())
+      }
+      menuActive()
+    </script>
+  </body>
+</html>

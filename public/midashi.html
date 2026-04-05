@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!--script(src='/js/main.min.js')-->
+    <link href="/css/reset.min.css" rel="stylesheet">
+    <link href="/css/main.min.css" rel="stylesheet">
+    <link href="/css/fw.min.css" rel="stylesheet">
+    <title>INDEX</title>
+    <link href="/css/fw.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  </head>
+  <body>
+    <div id="modal-bg"></div>
+    <div class="fv">
+      <header class="fm">
+        <div class="f" id="header-left"><a class="header-icon" href=""><span class="material-icons-outlined" id="menu-button">menu</span></a><a class="header-icon" href="/"><img id="logo" src="/favicon.ico"></a><a class="header-icon" href="/"><span class="material-icons-outlined">home</span></a><a class="header-icon" href="/grid.html">Grid</a><a class="header-icon" href="/form.html">Form</a><a class="header-icon" href="/form2.html">Form2</a><a class="header-icon" href="/login.html">Login</a><a class="header-icon" href="/table/body_scroll.html">Table1</a><a class="header-icon" href="/fw.html">FW</a><a class="header-icon" href="/animation.html">Anime</a><a class="header-icon" href="/midashi.html">Midashi</a></div>
+        <div class="f" id="header-right">
+          <div class="header-icon circle-icon">H</div><a class="header-icon" href="/"><span class="material-icons-outlined" id="menu-right-button">more_vert</span></a>
+        </div>
+      </header>
+      <div class="f" id="body">
+        <div id="menu">
+          <div class="item" href="/">
+            <div class="label">
+              <div class="material-icons-outlined">home</div><span>Index</span>
+            </div>
+          </div>
+          <div class="item" href="/grid.html">
+            <div class="label">Grid</div>
+          </div>
+          <div class="item">
+            <div class="label">Sub-1
+              <div class="sub-icon material-icons-outlined"></div>
+            </div>
+            <div class="sub-item-container">
+              <div class="sub-item" href="/">
+                <div class="label">Index</div>
+              </div>
+              <div class="sub-item" href="">
+                <div class="label">Sub-1-2</div>
+              </div>
+              <div class="sub-item" href="">
+                <div class="label">Sub-1-3</div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="label">Sub-2
+              <div class="sub-icon material-icons-outlined"></div>
+            </div>
+            <div class="sub-item-container">
+              <div class="sub-item" href="/grid.html">
+                <div class="label">Grid</div>
+              </div>
+              <div class="sub-item" href="">
+                <div class="label">Sub-2-2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <main>
+          <fieldset class="mb-2">
+            <legend>HOGE</legend>
+            <p>HOGE</p>
+            <p>HOGE</p>
+            <p>HOGE</p>
+          </fieldset>
+          <div class="title-box mb-2">TITLE-BOX</div>
+          <div class="title-box2 mb-2">TITLE-BOX2</div>
+          <div class="title-stripe-border mb-2">TITLE-STRIPE-BORDER</div>
+          <div class="title-stripe-border2 mb-2">TITLE-STRIPE-BORDER2</div>
+          <div class="title-icon mb-2 mt-7"><i class="material-icons">bolt</i><span>TITLE-ICON</span></div>
+          <div class="title-side-line mb-2"><span>TITLE-SIDE-LINE</span></div>
+          <div class="title-side-line2 mb-2">TITLE-SIDE-LINE2</div>
+          <div class="title-gradation mb-2">TITLE-GRADATION</div>
+          <div class="title-gradation2 mb-2">TITLE-GRADATION2</div>
+          <div class="title-gradation-line mb-2">TITLE-GRADATION-LINE</div>
+          <div class="title-tag mb-2">TITLE-TAG</div>
+          <p></p>
+          <div class="title-tag2 mb-2">TITLE-TAG2</div>
+          <div class="title-cool mb-2"><span>01</span>TITLE-COOL</div>
+          <div class="title-cool2 mb-2"><span>01</span>TITLE-COOL2</div>
+          <div class="title-ribbon mb-2"><span>TITLE-RIBBON</span></div>
+          <div class="title-ribbon2 mb-2"><span><i class="material-icons">star</i></span>TITLE-RIBBON2</div>
+          <div class="title-fukidashi mb-4">TITLE-FUKIDASHI</div>
+          <div class="title-fukidashi2 mb-4">TITLE-FUKIDASHI2</div>
+          <style>fieldset {
+  border: 2px solid white;
+  padding: 2px 14px 10px 14px;
+  border-radius: 10px;
+}
+
+legend {
+  font-weight: bold;
+  color: white;
+  padding: 0 10px;
+}
+
+.title-box {
+  position: relative;
+  padding: 1em 2em;
+  border: 4px solid white;
+}
+.title-box:before {
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  border: 2px solid white;
+}
+
+.title-box2 {
+  position: relative;
+  padding: 1em 2em;
+  border: 4px solid white;
+}
+.title-box2:before, .title-box2:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 100%;
+  border-top: 4px dotted white;
+}
+.title-box2:before {
+  top: 6px;
+}
+.title-box2:after {
+  bottom: 6px;
+}
+
+.title-stripe-border {
+  position: relative;
+  padding: 1em 2em;
+}
+.title-stripe-border:after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-image: repeating-linear-gradient(-45deg, white, white 1px, transparent 2px, transparent 8px);
+  background-size: 100vw 10px;
+  backface-visibility: hidden;
+}
+
+.title-stripe-border2 {
+  position: relative;
+  padding: 1em 2em;
+  border: 2px solid white;
+}
+.title-stripe-border2:after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  border-top: 2px solid white;
+  background-image: repeating-linear-gradient(-45deg, white, white 1px, transparent 2px, transparent 6px);
+  background-size: 100vw 10px;
+  backface-visibility: hidden;
+}
+
+.title-icon {
+  position: relative;
+  padding: 1.5rem;
+  text-align: center;
+  border: 2px solid white;
+  background: #444;
+}
+.title-icon:before, .title-icon:after {
+  position: absolute;
+  content: "";
+}
+.title-icon:before {
+  top: -40px;
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: #444;
+}
+.title-icon:after {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #444;
+}
+.title-icon i {
+  font-size: 30px;
+  font-size: 3rem;
+  line-height: 60px;
+  position: absolute;
+  z-index: 1;
+  top: -40px;
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 60px;
+  text-align: center;
+}
+.title-icon span {
+  position: relative;
+  z-index: 1;
+}
+
+.title-side-line {
+  position: relative;
+  padding: 0 65px;
+  text-align: center;
+}
+.title-side-line:before {
+  position: absolute;
+  content: "";
+  top: calc(50% - 1px);
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: white;
+}
+.title-side-line span {
+  position: relative;
+  padding: 0 1em;
+  background: #444;
+}
+
+.title-side-line2 {
+  position: relative;
+  display: inline-block;
+  padding: 0 65px;
+  text-align: center;
+}
+.title-side-line2:before, .title-side-line2:after {
+  position: absolute;
+  top: calc(50% - 3px);
+  width: 50px;
+  height: 6px;
+  content: "";
+  border-top: solid 2px white;
+  border-bottom: solid 2px white;
+}
+.title-side-line2:before {
+  left: 0;
+}
+.title-side-line2:after {
+  right: 0;
+}
+
+.title-gradation {
+  padding: 1rem 2rem;
+  border-radius: 100vh;
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+.title-gradation2 {
+  padding: 1rem 2rem;
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  transform: skew(-15deg);
+}
+
+.title-gradation-line {
+  position: relative;
+  padding: 1rem 2rem;
+}
+.title-gradation-line:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 5px;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+.title-tag {
+  position: relative;
+  display: inline-block;
+  color: #444;
+  background: white;
+  padding: 1em 1.2em 1em 2.5em;
+  border-radius: 100vh 50vh 50vh 100vh;
+}
+.title-tag:before {
+  position: absolute;
+  content: "";
+  top: calc(50% - 9px);
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  border-radius: 100vh;
+  background: #444;
+}
+
+.title-tag2 {
+  position: relative;
+  display: inline-block;
+  height: 64px;
+  margin-left: 30px;
+  color: #444;
+  background: white;
+  padding: 1.2em 1.2em 1em 2.5em;
+}
+.title-tag2:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: -30px;
+  border-width: 32px 30px 32px 0;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+}
+.title-tag2:after {
+  position: absolute;
+  content: "";
+  top: calc(50% - 9px);
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  border-radius: 100vh;
+  background: #444;
+}
+
+.title-cool {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 2rem 1.5rem 130px;
+  border: 2px solid white;
+}
+.title-cool:before {
+  position: absolute;
+  content: "";
+  top: -150%;
+  left: -100px;
+  width: 200px;
+  height: 300%;
+  transform: rotate(25deg);
+  background: white;
+}
+.title-cool span {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  font-size: 3em;
+  z-index: 1;
+  padding-top: 3px;
+  padding-left: 16px;
+  color: #444;
+}
+
+.title-cool2 {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 2rem 1.5rem 130px;
+  border-bottom: 2px solid white;
+}
+.title-cool2:before {
+  position: absolute;
+  content: "";
+  top: 0%;
+  left: -180px;
+  width: 300px;
+  height: 400px;
+  transform: rotate(55deg);
+  background: white;
+}
+.title-cool2 span {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  font-size: 3em;
+  z-index: 1;
+  padding-top: 3px;
+  padding-left: 16px;
+  color: #444;
+}
+
+.title-ribbon {
+  position: relative;
+  margin: 30px;
+  text-align: center;
+}
+.title-ribbon:before, .title-ribbon:after {
+  position: absolute;
+  display: block;
+  content: "";
+  z-index: 0;
+  bottom: -10px;
+  border: 1em solid #d90606;
+}
+.title-ribbon:before {
+  left: -30px;
+  border-left-width: 15px;
+  border-left-color: transparent;
+}
+.title-ribbon:after {
+  right: -30px;
+  border-right-width: 15px;
+  border-right-color: transparent;
+}
+.title-ribbon span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 1rem 2rem;
+  color: white;
+  background: #fa4141;
+}
+.title-ribbon span:before, .title-ribbon span:after {
+  position: absolute;
+  content: "";
+  bottom: -10px;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-style: solid;
+  border-color: #b70505 transparent transparent transparent;
+}
+.title-ribbon span:before {
+  left: 0;
+  border-width: 10px 0 0 10px;
+}
+.title-ribbon span:after {
+  right: 0;
+  border-width: 10px 10px 0 0;
+}
+
+.title-ribbon2 {
+  position: relative;
+  padding: 1rem 2rem 1rem 4em;
+  background: white;
+}
+.title-ribbon2 span {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  display: inline-block;
+  width: 46px;
+  height: 50px;
+  text-align: center;
+  background: #fa4141;
+}
+.title-ribbon2 span i {
+  position: relative;
+  z-index: 1;
+  padding-top: 4px;
+  color: #fff100;
+}
+.title-ribbon2 span:before, .title-ribbon2 span:after {
+  position: absolute;
+  content: "";
+}
+.title-ribbon2 span:before {
+  right: -10px;
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #d90606;
+}
+.title-ribbon2 span:after {
+  display: block;
+  top: 50%;
+  left: 0;
+  width: 46px;
+  height: 50%;
+  border: 1em solid #fa4141;
+  border-bottom-width: 15px;
+  border-bottom-color: transparent;
+}
+
+.title-fukidashi {
+  position: relative;
+  padding: 1.5rem 2rem;
+  color: white;
+  border-radius: 10px;
+  background: #094;
+}
+.title-fukidashi:after {
+  position: absolute;
+  bottom: -9px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: "";
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: #094 transparent transparent transparent;
+}
+
+.title-fukidashi2 {
+  position: relative;
+  padding: 1.5rem 2rem;
+  border: 3px solid white;
+  border-radius: 10px;
+  background: #444;
+}
+.title-fukidashi2:before {
+  position: absolute;
+  bottom: -14px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: "";
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+.title-fukidashi2:after {
+  position: absolute;
+  bottom: -10px;
+  left: 1em;
+  width: 0;
+  height: 0;
+  content: "";
+  border-width: 14px 12px 0 12px;
+  border-style: solid;
+  border-color: #444 transparent transparent transparent;
+}
+          </style>
+        </main>
+        <div id="menu-right">
+          <div class="item f-m" href="/">
+            <div class="label">
+              <div class="material-icons-outlined">home</div><span>Index</span>
+            </div>
+          </div>
+          <div class="item" href="/grid.html">
+            <div class="label">Grid</div>
+          </div>
+          <div class="item f-m" href="/login.html">
+            <div class="label">
+              <div class="material-icons-outlined">login</div><span>Login</span>
+            </div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+          <div class="item" href="">
+            <div class="label">右メニュー</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let menu = false
+      let menuRight = false
+      const modalBgFunc = (close) => {
+      	return (flag=true) => {
+      		if (flag) {
+      			$('#modal-bg').addClass('on')
+      		}
+      		else {
+      			$('#modal-bg').removeClass('on')
+      			$('.open').removeClass('open')
+      			close()
+      		}
+      	}
+      }
+      const menuModalBg = modalBgFunc(() => {
+      	menu = false
+      	menuRight = false
+      })
+      $('#modal-bg').click(function() { menuModalBg(false) })
+      $('#menu-button').click(function() {
+      	menu = !menu
+      	if (menu) {
+      		$('#menu').addClass('open')
+      		menuModalBg()
+      	}
+      	return false
+      })
+      $('#menu-right-button').click(function() {
+      	menuRight = !menuRight
+      	if (menuRight) {
+      		$('#menu-right').addClass('open')
+      		menuModalBg()
+      	}
+      	return false
+      })
+      const openSubMenu = ($item) => {
+      	if ($item.data('open')) {
+      		$item.data('open', false)
+      		$item.find('.sub-item-container').removeClass('open')
+      		$item.find('.sub-icon').removeClass('open')
+      	}
+      	else {
+      		$item.data('open', true)
+      		$item.find('.sub-item-container').addClass('open')
+      		$item.find('.sub-icon').addClass('open')
+      	}
+      }
+      $('.item').click(function() {
+      	const $item = $(this)
+      	const url = $item.attr('href')
+      	if (url) { location.href = url; }
+      	else { openSubMenu($item) }
+      })
+      $('.sub-item').click(function() {
+      	const $item = $(this)
+      	const url = $item.attr('href')
+      	if (url) { location.href = url; }
+      })
+      const menuActive = () => {
+      	const path = location.pathname
+      	$(`a.header-icon[href='${path}']`).addClass('active')
+      	$(`.item[href='${path}']`).addClass('active')
+      	openSubMenu($(`.sub-item[href='${path}']`).addClass('active').parent().parent())
+      }
+      menuActive()
+    </script>
+  </body>
+</html>

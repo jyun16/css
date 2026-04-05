@@ -1,0 +1,107 @@
+extends ./_layout/navi.pug
+block vars
+	- const title = 'INDEX'
+block contents
+	.f.fw
+		.label linear
+		.c-b
+			.b(style='animation: left-right 1s linear infinite alternate')
+		.label ease
+		.c-b
+			.b(style='animation: left-right 1s ease infinite alternate')
+		.label ease-in
+		.c-b
+			.b(style='animation: left-right 1s ease-in infinite alternate')
+		.label ease-out
+		.c-b
+			.b(style='animation: left-right 1s ease-out infinite alternate')
+		.label ease-in-out
+		.c-b
+			.b(style='animation: left-right 1s ease-in-out infinite alternate')
+	.effect-powan 🥰
+	.effect-pulsate 🥰
+	h3 animation NAME DURATION EASING DELAY ITERATION DIRECTION FILL_MODE
+	p NAME: keyframes name
+	p DURATION: keyframes を実行するための時間(s or ms)
+	p EASING: linear, ease, ease-in, ease-out, ease-in-out
+	p DELAY: 開始を遅らせる時間(s or ms)
+	p ITERATION: 実行回数。無限は infinite、小数点も可
+	p DIRECTION: reverse は keyframesを逆から実行、alternate は繰り返し(無限reverseする)
+	p FILL_MODE: アニメーション前後の状態。none(default)はアニメーション適用前に、forwards はアニメーションの最後のまま、backwards はアニメーション開始の状態に
+	h3 animation-play-state
+	p 停止したりが可能。runnning(default) は動作、paused で止めれる
+	style
+		:scss
+			.label {
+				flex-basis: 10%;
+			}
+			.c-b {
+				position: relative;
+				flex-basis: 90%;
+				width: 80%;
+				height: 10px;
+				.b {
+					position: absolute;
+					width: 10px;
+					height: 10px;
+					background-color: red;
+					border: 1px solid white;
+					animation: left-right 1s infinite alternate;
+				}
+			}
+			@keyframes blink {
+			  from { opacity: 0 }
+				to { opacity: 1 }
+			}
+			@keyframes disappear {
+				from { opacity: 1 }
+				to { opacity: 0 }
+			}
+			@keyframes left-right {
+				from { left: 0 }
+				to { left: calc(100%) }
+			}
+			.effect-powan {
+				display: inline-block;
+				animation: bishi .5s ease-in, shake-x .1s ease 4 .5s, powan 1s ease-in .5s;
+			}
+			@keyframes powan {
+				from {
+					text-shadow: 0 0 0 white;
+				}
+				to {
+					text-shadow: 0 0 40px white;
+				}
+			}
+			@keyframes bishi {
+				0% {
+					transform: scale(10);
+					opacity: 0;
+				}
+				80% {
+					opacity: .1;
+				}
+				100% {
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+			@keyframes shake-x {
+				0%   { transform:translate(0, 0); }
+				25% { transform:translate(2px, 0); }
+				50% { transform:translate(0, 0); }
+				75% { transform:translate(-2px, 0); }
+				100% { transform:translate(0, 0); }
+			}
+			.effect-pulsate {
+				display: inline-block;
+				animation: pulsate .5s ease infinite alternate;
+			}
+			@keyframes pulsate {
+				from {
+					transform: scale(1);
+				}
+				to {
+					transform: scale(1.2);
+				}
+			}

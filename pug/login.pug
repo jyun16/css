@@ -1,0 +1,15 @@
+extends ./_layout/base.pug
+block vars
+	- const title = 'LOGIN'
+block body
+	.f-m.vh100.p-8
+		.panel
+			.header LOGIN
+			form
+				.label User ID
+				input(name='userid' placeholder='User ID')
+				.p
+				.label Password
+				input(name='password' placeholder='Password')
+				.f-c
+					button.primary LOGIN

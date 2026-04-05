@@ -1,0 +1,32 @@
+extends ../_layout/navi.pug
+block vars
+	- const title = 'テスト'
+block contents
+	style.
+		body {
+			padding: 100px;
+		}
+		table {
+			width: 50%;
+			height: 50vh;
+			display: block;
+			overflow: auto;
+			white-space: nowrap;
+			border-collapse: collapse;
+			th, td {
+				border: 1px solid #eee;
+				padding: 4px 8px;
+			}
+		}
+	- const COLS = 30
+	- const ROWS = 100
+	table
+		thead
+			tr
+				- for (let i = 1; i <= COLS; i++)
+					th フィールド #{i}
+		tbody
+			- for (let j = 1; j <= ROWS; j++)
+				tr
+					- for (let i = 1; i <= COLS; i++)
+						td データ #{j} #{i}

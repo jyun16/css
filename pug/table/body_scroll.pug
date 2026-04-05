@@ -1,0 +1,102 @@
+extends ../_layout/navi.pug
+block vars
+	- const title = 'テスト'
+block contents
+	style.
+		:root {
+			--borderColor: #eee;
+		}
+		.fixed-table {
+			overflow: auto;
+			width: 100%;
+			height: 400px;
+			table {
+				border-spacing: 0;
+				tr:first-child th {
+					border-top: 1px solid var(--borderColor);
+					border-bottom: 1px solid var(--borderColor);
+					&:first-child { z-index: 1 }
+				}
+				tr:not(:nth-child(2)) {
+					th, td {
+						border-top: 1px solid var(--borderColor);
+					}
+				}
+				tr:last-child {
+					th, td {
+						border-bottom: 1px solid var(--borderColor);
+					}
+				}
+				th, td {
+					white-space: nowrap;
+					padding: 4px 8px;
+					background-color: #000;
+					border-right: 1px solid var(--borderColor);
+				}
+				th {
+					position: sticky;
+					top: 0;
+					left: 0;
+					&:first-child {
+						border-left: 1px solid var(--borderColor);
+					}
+				}
+			}
+		}
+		.header-fixed-table {
+			overflow: auto;
+			margin-top: 20px;
+			width: 100%;
+			height: 380px;
+			table {
+				border-spacing: 0;
+				th {
+					position: sticky;
+					top: 0;
+					border-top: 1px solid var(--borderColor);
+					border-bottom: 1px solid var(--borderColor);
+				}
+				th, td {
+					white-space: nowrap;
+					padding: 4px 8px;
+					background-color: #000;
+					border-right: 1px solid var(--borderColor);
+					&:first-child {
+						border-left: 1px solid var(--borderColor);
+					}
+				}
+				td {
+					border-bottom: 1px solid var(--borderColor);
+				}
+			}
+		}
+	- const COLS = 30
+	- const ROWS = 20
+	.fixed-table
+		table
+			- for (let j = 0; j < ROWS; j++)
+				tr
+					- for (let i = 0; i < COLS; i++)
+						if j == 0
+							th COL #{i}
+						else
+							if i == 0
+								th(data-ij=j).controll ROW #{j}
+							else
+								td!= `${`データ${i}${j}<br>`.repeat(10)}`
+	.header-fixed-table
+		table
+			thead
+				tr
+					- for (let i = 0; i < COLS; i++)
+						th COL #{i}
+			tbody
+				- for (let j = 1; j <= ROWS; j++)
+					tr
+						- for (let i = 1; i <= COLS; i++)
+							td データ #{j} #{i}
+	script.
+		$('.controll').click(function() {
+			const $this = $(this)
+			alert($this.data('ij'))
+		})

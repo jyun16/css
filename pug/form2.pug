@@ -1,0 +1,283 @@
+body
+	form
+		.line
+			.label TEST
+			.input
+				input(type='text')
+		.line
+			.label CHECKBOX
+			.input
+				.checkbox
+					label
+						input(type='checkbox' checked)
+						| AAAAAAAAAAAAAAAAAAAA
+					label
+						input(type='checkbox' checked)
+						| BBBBBBBBBB
+					label
+						input(type='checkbox')
+						| CCCCCCCCCC
+					label
+						input(type='checkbox')
+						| DDDDDDDDDD
+					label
+						input(type='checkbox')
+						| EEEEEEEEEE
+		.line
+			.label RADIO
+			.input
+				.radio
+					label
+						input(type='radio' name='radio' checked)
+						| AAAAAAAAAA
+					label
+						input(type='radio' name='radio')
+						| BBBBBBBBBB
+					label
+						input(type='radio' name='radio')
+						| CCCCCCCCCC
+					label
+						input(type='radio' name='radio')
+						| DDDDDDDDDD
+					label
+						input(type='radio' name='radio')
+						| EEEEEEEEEE
+		.line
+			.label SELECT
+			.input
+				.select
+					select
+						option hoge
+						option fuga
+
+		.line
+			.label TEXTAREA
+			.input
+				textarea(rows='4')
+		.line
+			.label SEARCH
+			.input
+				.search
+					label
+						input(type='text')
+						button
+		.line
+			.label PASSWORD
+			.input
+				.password
+					label
+						input(type='password' value='hogefuga')
+						button
+		.actions
+			button.primary GO
+	style
+		:scss
+			@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			form {
+				border: 2px solid green;
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				margin: 0 auto;
+				padding: .5rem;
+				gap: .5rem;
+				.line {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					.label {
+						width: 200px;
+					}
+					.input {
+						flex: 1;
+						input[type='text'], input[type='password'] {
+							width: 100%;
+							padding: 10px;
+							border: 2px solid #ddd;
+							border-radius: 5px;
+							&:focus {
+								border-color: #0099ff;
+								outline: none;
+							}
+						}
+						// input:has([type='checkbox']) でも行ける
+						.checkbox {
+							display: flex;
+							flex-wrap: wrap;
+							gap: 0 1em;
+							border: none;
+							label {
+								display: flex;
+								align-items: center;
+								gap: 0 .5em;
+								position: relative;
+								cursor: pointer;
+								user-select: none;
+								&::before {
+									width: 14px;
+									height: 14px;
+									border-radius: 3px;
+									border: 2px solid #ddd;
+									content: '';
+								}
+								&:has(:checked)::after {
+									position: absolute;
+									top: 5px;
+									left: 6px;
+									transform: rotate(45deg);
+									width: 4px;
+									height: 9px;
+									border: solid #0099ff;
+									border-width: 0 3px 3px 0;
+									content: '';
+								}
+							}
+							input { display: none; }
+						}
+						.radio {
+							display: flex;
+							flex-wrap: wrap;
+							gap: 0 1em;
+							border: none;
+							label {
+								display: flex;
+								align-items: center;
+								gap: 0 .5em;
+								position: relative;
+								cursor: pointer;
+								user-select: none;
+								&::before, &::after {
+									border-radius: 50%;
+									content: '';
+								}
+								&::before {
+									width: 18px;
+									height: 18px;
+									border: 2px solid #ddd;
+									box-sizing: border-box;
+								}
+								&::after {
+									position: absolute;
+									top: 50%;
+									left: 9px;
+									transform: translate(-50%, -50%);
+									width: 9px;
+									height: 9px;
+									background-color: #ddd;
+								}
+								&:has(:checked)::after {
+									background-color: #0099ff;
+								}
+							}
+							input { display: none; }
+						}
+						.select {
+							display: inline-flex;
+							align-items: center;
+							position: relative;
+							&::after {
+								position: absolute;
+								right: 15px;
+								width: 10px;
+								height: 7px;
+								background-color: #535353;
+								clip-path: polygon(0 0, 100% 0, 50% 100%);
+								content: '';
+								pointer-events: none;
+							}
+							select {
+								appearance: none;
+								padding: 10px;
+								border: 2px solid #ddd;
+								border-radius: 5px;
+								background-color: #fff;
+								min-width: 230px;
+								font-size: 1em;
+								cursor: pointer;
+								&:focus {
+									border-color: #0099ff;
+									outline: none;
+								}
+							}
+						}
+						textarea {
+							width: 100%;
+							padding: 10px;
+							border: 2px solid #ddd;
+							border-radius: 5px;
+							&:focus {
+								border-color: #0099ff;
+								outline: none;
+							}
+						}
+					}
+				}
+				.actions {
+					display: flex;
+					justify-content: center;
+				}
+				button.primary {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					min-width: 200px;
+					border: 0;
+					border-radius: 5px;
+					color: white;
+					background-color: #0066ff;
+					font-weight: bold;
+					padding: .7rem;
+					cursor: pointer;
+				}
+			}
+			.search {
+				position: relative;
+				button {
+					position: absolute;
+					top: 6px;
+					right: 12px;
+					border: none;
+					background-color: transparent;
+					cursor: pointer;
+					&::after {
+						color: #999;
+						font-size: 24px;
+						font-family: 'Material Symbols Outlined';
+						content: '\e8b6';
+					}
+				}
+			}
+			.password {
+				position: relative;
+				button {
+					position: absolute;
+					top: 6px;
+					right: 12px;
+					border: none;
+					background-color: transparent;
+					cursor: pointer;
+					&::after {
+						color: #999;
+						font-size: 24px;
+						font-family: 'Material Symbols Outlined';
+						content: '\e8f4';
+					}
+				}
+			}
+			@media (width < 600px) {
+				form {
+					.line {
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
+						.input {
+							width: 100%;
+						}
+					}
+				}
+			}

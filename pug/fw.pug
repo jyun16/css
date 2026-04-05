@@ -1,0 +1,42 @@
+extends ./_layout/base.pug
+
+block head
+	link(href='/css/fw.min.css' rel='stylesheet')
+
+block vars
+	- const title = 'FW'
+
+block body
+	link(rel='stylesheet' href='/css/fw.min.css')
+	#header.fix-t.f-c.f-m HEADER
+	#main.fh.fw.vh100
+		.box.fv.f-c.f-m.fg-1
+			p HOGE
+		.box.fv.f-c.f-m.fg-1
+			p HOGE
+			p HOGE
+		.box.fv.f-c.f-m.fg-1
+			p HOGE
+			p HOGE
+			p HOGE
+	#footer.fix-b.f-c.f-m
+		div.c FOOTER
+	style.
+		.box {
+			border: 1px solid #fff;
+		}
+		#header {
+			color: #fff;
+			background-color: #333;
+			height: 40px;
+		}
+		#main {
+			padding-top: 40px;
+			color: #fff;
+			background-color: #555;
+		}
+		#footer {
+			color: #fff;
+			background-color: #777;
+			height: 40px;
+		}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!--script(src='/js/main.min.js')-->
+    <link href="/css/reset.min.css" rel="stylesheet">
+    <link href="/css/main.min.css" rel="stylesheet">
+    <link href="/css/fw.min.css" rel="stylesheet">
+    <title>テスト</title>
+  </head>
+  <body>
+    <header>ヘッダー
+      <button id="nav-toggle">メニュー開閉</button>
+    </header>
+    <nav>メニュー</nav>
+    <main>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+      <p>コンテンツ</p>
+    </main>
+    <script>
+      let navCollapse = false
+      $('#nav-toggle').click(function() {
+      	navCollapse = !navCollapse
+      	let navWidth = navCollapse ? 100 : 280;
+      	$('body').css({
+      		'grid-template-columns': `${navWidth}px 1fr`
+      	})
+      	return false
+      })
+    </script>
+    <style>
+      :root {
+      	--headerHeight: 60px;
+      	--navWidth: 280px;
+      }
+      * {
+      	margin: 0;
+      	padding: 0;
+      	box-sizing: border-box;
+      }
+      body {
+      	display: grid;
+      	height: 100vh;
+      	grid-template-rows: var(--headerHeight) 1fr;
+      	grid-template-columns: var(--navWidth) 1fr;
+      	grid-template-areas:
+      		'header header'
+      		'nav main';
+      }
+      header {
+      	grid-area: header;
+      	background-color: lightcyan;
+      	box-sizing: border-box;
+      	border: 8px solid blue;
+      }
+      nav {
+      	grid-area: nav;
+      	margin: 0;
+      	background-color: moccasin;
+      	box-sizing: border-box;
+      	border: 8px solid chocolate;
+      }
+      main {
+      	grid-area: main;
+      	overflow-y: auto;
+      	background-color: palegoldenrod;
+      	box-sizing: border-box;
+      	border: 8px solid green;
+      }
+    </style>
+  </body>
+</html>

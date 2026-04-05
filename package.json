@@ -1,0 +1,16 @@
+{
+	"type": "module",
+  "name": "jue",
+	"devDependencies": {
+    "browser-sync": "^3.0.3",
+    "gulp": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-pug": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "pug": "^3.0.3",
+    "sass": "^1.81.0"
+  }
+}

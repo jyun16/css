@@ -1,0 +1,461 @@
+extends ./_layout/navi.pug
+block vars
+	- const title = 'INDEX'
+block contents
+	fieldset.mb-2
+		legend HOGE
+		p HOGE
+		p HOGE
+		p HOGE
+	.title-box.mb-2 TITLE-BOX
+	.title-box2.mb-2 TITLE-BOX2
+	.title-stripe-border.mb-2 TITLE-STRIPE-BORDER
+	.title-stripe-border2.mb-2 TITLE-STRIPE-BORDER2
+	.title-icon.mb-2.mt-7
+		i.material-icons bolt
+		span TITLE-ICON
+	.title-side-line.mb-2
+		span TITLE-SIDE-LINE
+	.title-side-line2.mb-2 TITLE-SIDE-LINE2
+	.title-gradation.mb-2 TITLE-GRADATION
+	.title-gradation2.mb-2 TITLE-GRADATION2
+	.title-gradation-line.mb-2 TITLE-GRADATION-LINE
+	.title-tag.mb-2 TITLE-TAG
+	p
+	.title-tag2.mb-2 TITLE-TAG2
+	.title-cool.mb-2
+		span 01
+		| TITLE-COOL
+	.title-cool2.mb-2
+		span 01
+		| TITLE-COOL2
+	.title-ribbon.mb-2
+		span TITLE-RIBBON
+	.title-ribbon2.mb-2
+		span
+			i.material-icons star
+		| TITLE-RIBBON2
+	.title-fukidashi.mb-4 TITLE-FUKIDASHI
+	.title-fukidashi2.mb-4 TITLE-FUKIDASHI2
+	style
+		:scss
+			$color: white;
+			$bgColor: #444;
+			fieldset {
+				border: 2px solid $color;
+				padding: 2px 14px 10px 14px;
+				border-radius: 10px;
+			}
+			legend {
+				font-weight: bold;
+				color: $color;
+				padding: 0 10px;
+			}
+			@mixin base {
+				position: relative;
+				padding: 1em 2em;
+			}
+			.title-box {
+				@include base;
+				border: 4px solid $color;
+				&:before {
+					position: absolute;
+					content: '';
+					top: 4px;
+					left: 4px;
+					width: calc(100% - 8px);
+					height: calc(100% - 8px);
+					border: 2px solid $color;
+				}
+			}
+			.title-box2 {
+				@include base;
+				border: 4px solid $color;
+				&:before, &:after {
+					position: absolute;
+					content: '';
+					left: 0;
+					width: 100%;
+					border-top: 4px dotted $color;
+				}
+				&:before {
+					top: 6px;
+				}
+				&:after {
+					bottom: 6px;
+				}
+			}
+			.title-stripe-border {
+				@include base;
+				&:after {
+					position: absolute;
+					content: '';
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: 10px;
+					background-image: repeating-linear-gradient(-45deg, $color, $color 1px, transparent 2px, transparent 8px);
+					background-size: 100vw 10px;
+					backface-visibility: hidden;
+				}
+			}
+			.title-stripe-border2 {
+				@include base;
+				border: 2px solid $color;
+				&:after {
+					position: absolute;
+					content: '';
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: 10px;
+					border-top: 2px solid $color;
+					background-image: repeating-linear-gradient(-45deg, $color, $color 1px, transparent 2px, transparent 6px);
+					background-size: 100vw 10px;
+					backface-visibility: hidden;
+				}
+			}
+			.title-icon {
+				position: relative;
+				padding: 1.5rem;
+				text-align: center;
+				border: 2px solid $color;
+				background: $bgColor;
+				&:before, &:after {
+					position: absolute;
+					content: '';
+				}
+				&:before {
+					top: -40px;
+					left: calc(50% - 40px);
+					width: 80px;
+					height: 80px;
+					border-radius: 50%;
+					border: 2px solid $color;
+					background: $bgColor;
+				}
+				&:after {
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: $bgColor;
+				}
+				& i {
+					font-size: 30px;
+					font-size: 3rem;
+					line-height: 60px;
+					position: absolute;
+					z-index: 1;
+					top: -40px;
+					left: calc(50% - 40px);
+					width: 80px;
+					height: 60px;
+					text-align: center;
+				}
+				& span {
+					position: relative;
+					z-index: 1;
+				}
+			}
+			.title-side-line {
+				position: relative;
+				padding: 0 65px;
+				text-align: center;
+				&:before {
+					position: absolute;
+					content: '';
+					top: calc(50% - 1px);
+					left: 0;
+					width: 100%;
+					height: 2px;
+					background: $color;
+				}
+				& span {
+					position: relative;
+					padding: 0 1em;
+					background: $bgColor; 
+				}
+			}
+			.title-side-line2 {
+				position: relative;
+				display: inline-block;
+				padding: 0 65px;
+				text-align: center;
+				&:before, &:after {
+					position: absolute;
+					top: calc(50% - 3px);
+					width: 50px;
+					height: 6px;
+					content: '';
+					border-top: solid 2px $color;
+					border-bottom: solid 2px $color;
+				}
+				&:before {
+					left: 0;
+				}
+				&:after {
+					right: 0;
+				}
+			}
+			.title-gradation {
+				padding: 1rem 2rem;
+				border-radius: 100vh;
+				background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+			}
+			.title-gradation2 {
+				padding: 1rem 2rem;
+				background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+				transform: skew(-15deg);
+			}
+			.title-gradation-line {
+				position: relative;
+				padding: 1rem 2rem;
+				&:after {
+					position: absolute;
+					content: '';
+					width: 100%;
+					height: 5px;
+					bottom: 0;
+					left: 0;
+					background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+				}
+			}
+			.title-tag {
+				position: relative;
+				display: inline-block;
+				color: $bgColor;
+				background: $color;
+				padding: 1em 1.2em 1em 2.5em;
+				border-radius: 100vh 50vh 50vh 100vh;
+				&:before {
+					position: absolute;
+					content: '';
+					top: calc(50% - 9px);
+					left: 14px;
+					width: 18px;
+					height: 18px;
+					border-radius: 100vh;
+					background: $bgColor;
+				}
+			}
+			.title-tag2 {
+				position: relative;
+				display: inline-block;
+				height: 64px;
+				margin-left: 30px;
+				color: $bgColor;
+				background: $color;
+				padding: 1.2em 1.2em 1em 2.5em;
+				&:before {
+					position: absolute;
+					content: '';
+					top: 0;
+					left: -30px;
+					border-width: 32px 30px 32px 0;
+					border-style: solid;
+					border-color: transparent $color transparent transparent;
+				}
+				&:after {
+					position: absolute;
+					content: '';
+					top: calc(50% - 9px);
+					left: 14px;
+					width: 18px;
+					height: 18px;
+					border-radius: 100vh;
+					background: $bgColor;
+				}
+			}
+			.title-cool {
+				position: relative;
+				overflow: hidden;
+				padding: 1.5rem 2rem 1.5rem 130px;
+				border: 2px solid $color;
+				&:before {
+					position: absolute;
+					content: '';
+					top: -150%;
+					left: -100px;
+					width: 200px;
+					height: 300%;
+					transform: rotate(25deg);
+					background: $color;
+				}
+				& span {
+					position: absolute;
+					display: block;
+					top: 0;
+					left: 0;
+					font-size: 3em;
+					z-index: 1;
+					padding-top: 3px;
+					padding-left: 16px;
+					color: $bgColor;
+				}
+			}
+			.title-cool2 {
+				position: relative;
+				overflow: hidden;
+				padding: 1.5rem 2rem 1.5rem 130px;
+				border-bottom: 2px solid $color;
+				&:before {
+					position: absolute;
+					content: '';
+					top: 0%;
+					left: -180px;
+					width: 300px;
+					height: 400px;
+					transform: rotate(55deg);
+					background: $color;
+				}
+				& span {
+					position: absolute;
+					display: block;
+					top: 0;
+					left: 0;
+					font-size: 3em;
+					z-index: 1;
+					padding-top: 3px;
+					padding-left: 16px;
+					color: $bgColor;
+				}
+			}
+			.title-ribbon {
+				position: relative;
+				margin: 30px;
+				text-align: center;
+				&:before, &:after {
+					position: absolute;
+					display: block;
+					content: '';
+					z-index: 0;
+					bottom: -10px;
+					border: 1em solid #d90606;
+				}
+				&:before {
+					left: -30px;
+					border-left-width: 15px;
+					border-left-color: transparent;
+				}
+				&:after {
+					right: -30px;
+					border-right-width: 15px;
+					border-right-color: transparent;
+				}
+				& span {
+					position: relative;
+					z-index: 1;
+					display: block;
+					padding: 1rem 2rem;
+					color: $color;
+					background: #fa4141;
+				}
+				& span:before, span:after {
+					position: absolute;
+					content: '';
+					bottom: -10px;
+					display: block;
+					width: 10px;
+					height: 10px;
+					border-style: solid;
+					border-color: #b70505 transparent transparent transparent;
+				}
+				& span:before {
+					left: 0;
+					border-width: 10px 0 0 10px;
+				}
+				& span:after {
+					right: 0;
+					border-width: 10px 10px 0 0;
+				}
+			}
+			.title-ribbon2 {
+				position: relative;
+				padding: 1rem 2rem 1rem 4em;
+				background: $color;
+				& span {
+					position: absolute;
+					top: -10px;
+					left: 20px;
+					display: inline-block;
+					width: 46px;
+					height: 50px;
+					text-align: center;
+					background: #fa4141;
+					& i {
+						position: relative;
+						z-index: 1;
+						padding-top: 4px;
+						color: #fff100;
+					}
+					&:before, &:after {
+						position: absolute;
+						content: '';
+					}
+					&:before {
+						right: -10px;
+						width: 0;
+						height: 0;
+						border-right: 10px solid transparent;
+						border-bottom: 10px solid #d90606;
+					}
+					&:after {
+						display: block;
+						top: 50%;
+						left: 0;
+						width: 46px;
+						height: 50%;
+						border: 1em solid #fa4141;
+						border-bottom-width: 15px;
+						border-bottom-color: transparent;
+					}
+				}
+			}
+			.title-fukidashi {
+				position: relative;
+				padding: 1.5rem 2rem;
+				color: $color;
+				border-radius: 10px;
+				background: #094;
+				&:after {
+					position: absolute;
+					bottom: -9px;
+					left: 1em;
+					width: 0;
+					height: 0;
+					content: '';
+					border-width: 10px 10px 0 10px;
+					border-style: solid;
+					border-color: #094 transparent transparent transparent;
+				}
+			}
+			.title-fukidashi2 {
+				position: relative;
+				padding: 1.5rem 2rem;
+				border: 3px solid $color;
+				border-radius: 10px;
+				background: $bgColor;
+				&:before {
+					position: absolute;
+					bottom: -14px;
+					left: 1em;
+					width: 0;
+					height: 0;
+					content: '';
+					border-width: 14px 12px 0 12px;
+					border-style: solid;
+					border-color: $color transparent transparent transparent;
+				}
+				&:after {
+					position: absolute;
+					bottom: -10px;
+					left: 1em;
+					width: 0;
+					height: 0;
+					content: '';
+					border-width: 14px 12px 0 12px;
+					border-style: solid;
+					border-color: $bgColor transparent transparent transparent;
+				}
+			}

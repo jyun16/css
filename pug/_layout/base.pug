@@ -1,0 +1,28 @@
+-
+	function rand(...a) {
+		if (a.length >= 2) {
+			return Math.floor(Math.random() * a[1]) + a[0]
+		}
+		else {
+			return Math.floor(Math.random() * a[0])
+		}
+	}
+
+doctype html
+html(lang='ja')
+	head
+		meta(charset='utf-8')
+		meta(name='viewport' content='width=device-width, initial-scale=1')
+		link(href='/favicon.ico' rel='icon')
+		link(href='https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone' rel='stylesheet')
+		script(src='https://code.jquery.com/jquery-3.7.1.min.js')
+		//script(src='/js/main.min.js')
+		link(href='/css/reset.min.css' rel='stylesheet')
+		link(href='/css/main.min.css' rel='stylesheet')
+		link(href='/css/fw.min.css' rel='stylesheet')
+		block vars
+			- const title = '-'
+		title #{title}
+		block head
+	body
+		block body
