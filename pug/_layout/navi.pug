@@ -4,6 +4,17 @@ block head
 	link(href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0' rel='stylesheet')
 block body
 	#modal-bg
+	-
+		const MENU = {
+			'/flex.html': 'Flex',
+			'/grid.html': 'Grid',
+			'/form.html': 'Form',
+			'/table/body_scroll.html': 'Table',
+			'/animation.html': 'Anime',
+			'/midashi.html': 'Midashi',
+			'/login.html': 'Login',
+			'/fw.html': 'FW'
+		}
 	.fv
 		header.fm
 			#header-left.f
@@ -13,13 +24,8 @@ block body
 					img#logo(src='/favicon.ico')
 				a(href='/').header-icon
 					span.material-icons-outlined home
-				a(href='/grid.html').header-icon Grid
-				a(href='/form.html').header-icon Form
-				a(href='/table/body_scroll.html').header-icon Table
-				a(href='/animation.html').header-icon Anime
-				a(href='/midashi.html').header-icon Midashi
-				a(href='/login.html').header-icon Login
-				a(href='/fw.html').header-icon FW
+				each text, url in MENU
+					a(href=url).header-icon= text
 			#header-right.f
 				.header-icon.circle-icon H
 				a(href='/').header-icon
