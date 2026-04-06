@@ -8,7 +8,7 @@ form {
 	@extend .form-preview;
 	input, textarea {
 		font-size: 1rem;
-		padding: 1rem;
+		padding: .5rem;
 		background: v.$color;
 		color: v.$bgColor;
 		border-radius: 5px;

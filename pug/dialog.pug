@@ -1,0 +1,50 @@
+
+extends ./_layout/navi.pug
+block vars
+	- const title = 'DIALOG'
+block contents
+	.panel
+		.header
+			.left: span.icon person
+			| DIALOG TITLE
+			.right: span.icon close#close_btn
+		.body
+			p= 'DIALOG CONTENT '.repeat(50)
+		.footer.fc
+			button#ok_btn OK
+	button#open_btn OPEN
+	dialog#test_dialog.dialog
+		.g-card
+			.header
+				.left: span.icon person
+				| DIALOG TITLE
+				.right: span.icon close#close_btn
+			.body
+				p= 'DIALOG CONTENT '.repeat(50)
+			.footer
+				button#ok_btn OK
+	script.
+		const d = document.getElementById('test_dialog')
+		const open = document.getElementById('open_btn')
+		const close = document.getElementById('close_btn')
+		const ok = document.getElementById('ok_btn')
+		open.onclick = () => d.showModal()
+		const hide = () => d.close()
+		close.onclick = hide
+		ok.onclick = hide
+		d.onclick = (e) => {
+			if (e.target === d) d.close()
+		}
+	style
+		:scss
+			.dialog {
+				padding: 0;
+				border: 1px solid #ccc;
+				border-radius: .5rem;
+				width: 90%;
+				max-width: 500px;
+				background: #fff;
+				&::backdrop {
+					background: rgba(0, 0, 0, .5);
+				}
+			}
