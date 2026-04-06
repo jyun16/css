@@ -5,6 +5,18 @@
 	box-sizing: border-box;
 }
 
+.icon {
+	font-family: 'Material Symbols Outlined';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+}
+
 header {
 	color: v.$headerColor;
 	height: v.$headerHeight;
@@ -170,11 +182,6 @@ a {
 	}
 }
 
-.box {
-	padding: .5em;
-	border: 1px solid v.$color;
-}
-
 #modal-bg {
 	z-index: 65535;
 	position: absolute;
@@ -226,39 +233,36 @@ button,input[type='button'],input[type='submit'] {
 	}
 }
 
-.panel {
-	flex-grow: 1;
-	.header {
-		display: flex;
-		justify-content: center;
-		font-size: 1.8rem;
-		font-weight: bold;
+@mixin scrollbar {
+	&::-webkit-scrollbar {
+		width: 14px;
 	}
-	padding: .5rem;
-	margin: .5rem;
-	border: 1px solid v.$color;
-	border-radius: 10px;
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: #888;
+		border-radius: 10px;
+		border: 4px solid transparent;
+		background-clip: padding-box;
+	}
 }
 
-@mixin scrollbar {
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 10px;
-  }
-  &::-webkit-scrollbar-track {
-    background: #ccc;
-    border-radius: 10px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: #888;
-  }
+.box {
+	@include scrollbar;
+	padding: .5rem;
+	border-radius: .5rem;
+	word-break: break-all;
+	overflow-y: scroll;
+	min-height: 0;
+	padding: .5em;
+	border: 1px solid v.$color;
 }
 
 @mixin gCardHeaderFooter {
 	position: relative;
-	padding: 0 2.4rem;
-	line-height: 2.4rem;
+	padding: 0 2.2rem;
+	line-height: 2.2rem;
 	text-align: center;
 	font-size: 1.2rem;
 	font-weight: bold;
@@ -266,23 +270,25 @@ button,input[type='button'],input[type='submit'] {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	.center {
-		display: flex;
+	.icon {
 		align-items: center;
-		gap: .3rem;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-	}
+  }
 	.left, .right {
 		position: absolute;
 		top: 0;
 		bottom: 0;
 		display: flex;
 		align-items: center;
+		.icon {
+			top: 0;
+			margin: 0;
+		}
 	}
-	.left { left: .2rem; }
-	.right { right: .2rem; }
+	.left { left: .3rem; }
+	.right { right: .3rem; }
+	> :not(.left):not(.right) {
+		vertical-align: middle;
+	}
 }
 
 .g {
@@ -310,6 +316,20 @@ button,input[type='button'],input[type='submit'] {
 			@include gCardHeaderFooter;
 		}
 	}
+}
+
+.panel {
+	flex-grow: 1;
+	.header {
+		display: flex;
+		justify-content: center;
+		font-size: 1.8rem;
+		font-weight: bold;
+	}
+	padding: .5rem;
+	margin: .5rem;
+	border: 1px solid v.$color;
+	border-radius: 10px;
 }
 
 .card {
