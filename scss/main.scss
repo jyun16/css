@@ -324,11 +324,15 @@ button,input[type='button'],input[type='submit'] {
 	display: inline-flex;
 	justify-content: center;
 	gap: .2rem;
+	cursor: pointer;
 	&.primary {
 		background: cornflowerblue;
 	}
 	&.secondary {
 		background: gray;
+	}
+	&:focus {
+		border: 1px solid #f00;
 	}
 }
 
