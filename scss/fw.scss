@@ -1,9 +1,26 @@
 @use 'sass:math';
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+	height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+button, input, select, textarea {
+  border: none;
+  background: none;
+  outline: none;
+  appearance: none;
+}
+button, input, select, textarea, dialog {
+  font-family: inherit;
+  color: inherit;
 }
 
 @mixin scrollbar {
@@ -139,10 +156,14 @@
 .w-auto { width: auto !important; }
 .h-auto { height: auto !important; }
 @for $i from 1 through 10 {
-	.vh#{$i}0 { height: $i * 10vh; }
-	.h#{$i}0 { height: $i * 10%; }
-	.vw#{$i}0 { width: $i * 10vw; }
-	.w#{$i}0 { width: $i * 10%; }
+	.max-vh#{$i}0 { max-height: $i * 10vh !important; }
+	.vh#{$i}0 { height: $i * 10vh !important; }
+	.max-h#{$i}0 { max-height: $i * 10% !important; }
+	.h#{$i}0 { height: $i * 10% !important; }
+	.max-vw#{$i}0 { max-width: $i * 10vw !important; }
+	.vw#{$i}0 { width: $i * 10vw !important; }
+	.w#{$i}0 { width: $i * 10% !important; }
+	.max-w#{$i}0 { max-width: $i * 10% !important; }
 }
 
 $borderColors: (

@@ -2,11 +2,11 @@ extends ./_layout/navi.pug
 block vars
 	- const title = 'CARD'
 block contents
-	- const type = 'card-full'
-	// - const type = 'card'
+	// - const type = 'card-full'
+	- const type = 'card'
 	if type == 'card-full'
 		.fm.fac.h100
-			.card.h100
+			.card-full
 				.header
 					.left
 						span.icon share
@@ -14,7 +14,7 @@ block contents
 					span= 'HEADER'.repeat(10)
 					.right
 						span.icon key_vertical
-				.body.border
+				.body
 					p= '0123456789'.repeat(500)
 				.footer FOOTER
 	else if type == 'card'
