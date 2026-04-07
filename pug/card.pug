@@ -1,0 +1,32 @@
+
+extends ./_layout/navi.pug
+block vars
+	- const title = 'DIALOG'
+block contents
+	// .g
+	// 	.g-card
+	// 		.header
+	// 			.left
+	// 				span.icon share
+	// 			span.icon person
+	// 			span= 'HEADER'.repeat(10)
+	// 			.right
+	// 				span.icon key_vertical
+	// 		.body
+	// 			p= '0123456789'.repeat(200)
+	// 		.footer FOOTER
+	.fm.vh100
+		.panel
+			.header
+				.left
+					span.icon share
+				span.icon person
+				span= 'HEADER'.repeat(10)
+				.right
+					span.icon key_vertical
+			.body
+				p= '0123456789'.repeat(500)
+			.footer FOOTER
+	script.
+	style
+		:scss

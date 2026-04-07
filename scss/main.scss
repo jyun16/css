@@ -259,21 +259,7 @@ button,input[type='button'],input[type='submit'] {
 	border: 1px solid v.$color;
 }
 
-.panel {
-	flex-grow: 1;
-	.header {
-		display: flex;
-		justify-content: center;
-		font-size: 1.8rem;
-		font-weight: bold;
-	}
-	padding: .5rem;
-	margin: .5rem;
-	border: 1px solid v.$color;
-	border-radius: 10px;
-}
-
-@mixin gCardHeaderFooter {
+@mixin headerFooter {
 	position: relative;
 	padding: 0 2.2rem;
 	line-height: 2.2rem;
@@ -305,6 +291,22 @@ button,input[type='button'],input[type='submit'] {
 	}
 }
 
+.panel {
+	flex-grow: 1;
+	padding: .5rem;
+	border: 1px solid v.$color;
+	border-radius: .5rem;
+	.header { @include headerFooter; }
+	.body {
+		@include scrollbar;
+		max-height: 50vh;
+		padding-left: .5rem;
+		overflow-y: scroll;
+		word-break: break-all;
+	}
+	.footer { @include headerFooter; }
+}
+
 .g {
 	display: grid;
 	gap: .5rem;
@@ -317,14 +319,14 @@ button,input[type='button'],input[type='submit'] {
 		min-height: 0;
 		border: 1px solid #ccc;
 		border-radius: .5rem;
-		.header { @include gCardHeaderFooter; }
+		.header { @include headerFooter; }
 		.body {
 			@include scrollbar;
 			padding-left: .5rem;
 			overflow-y: scroll;
 			word-break: break-all;
 		}
-		.footer { @include gCardHeaderFooter; }
+		.footer { @include headerFooter; }
 	}
 }
 
