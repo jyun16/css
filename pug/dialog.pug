@@ -13,48 +13,69 @@ block contents
 					span= 'INFO'.repeat(10)
 					.right
 						span.close.icon close
-				.body
+				.body(tabindex='-1')
 					p= '0123456789'.repeat(500)
 				.footer
-					button.primary.close CLOSE
+					button.primary.close(autofocus) CLOSE
+	.fc.fb.h40
+		button.primary.open-sticky-dialog
+			span.icon launch
+			span OPEN
+	.fc.fb.h50
+		button.primary.open-sticky-dialog
+			span.icon launch
+			span OPEN
 	script.
 		const d = console.log
-		const $open = $('#open')
-		const $close = $('.close')
 		const $dialog = $('#dialog')
-
-		$open.click(() => {
-			$dialog[0].showModal()
+		$('#open').click(() => {
+			$dialog.removeClass('sticky-dialog')
+			$dialog[0].showModal();
+			$dialog[0].blur()
 		})
-
-		$close.click(() => {
+		$('.open-sticky-dialog').click(e => {
+			$('.open-sticky-dialog').removeClass('dialog-anchor')
+			$(e.currentTarget).addClass('dialog-anchor')
+			$dialog.addClass('sticky-dialog')
+			$dialog[0].showModal();
+		})
+		$('.close').click(() => {
 			$dialog[0].close()
 		})
-
-		$dialog[0].showModal()
-
+		// $('.open-btn').click((e) => {
+		// 	const $dialog = $('#dialog')
+		// 	let top = e.clientY
+		// 	let left = e.clientX
+		// 	const h = $dialog.outerHeight()
+		// 	const w = $dialog.outerWidth()
+		// 	if (top + h > $(window).height()) {
+		// 		top = e.clientY - h
+		// 	}
+		// 	if (left + w > $(window).width()) {
+		// 		left = e.clientX - w
+		// 	}
+		// 	$dialog.css({ top: top + 'px', left: left + 'px' })
+		// 	$dialog[0].showModal()
+		// })
 	style
 		:scss
-			dialog {
+			#dialog {
 				margin: auto;
-				inset: 0;
-				padding: 0 !important;
-				border: none !important;
-				outline: none !important;
-				box-shadow: none !important;
-				background: transparent;
-				&:focus {
-					outline: none !important;
-					box-shadow: none !important;
-				}
-				&:focus-visible {
-					outline: none !important;
-					box-shadow: none !important;
-				}
-				.card {
-					border: none;
+				.body {
+					&:focus { outline: none; }
 				}
 				&::backdrop {
-					background: rgba(0, 0, 0, .5);
+					background: rgba(0, 0, 0, 0.6);
 				}
+			}
+			.sticky-dialog {
+				position: fixed;
+				margin: 0 !important;
+				position-anchor: --anchor;
+				top: anchor(bottom);
+				left: anchor(left);
+				position-try-fallbacks: flip-block, flip-inline;
+			}
+			.dialog-anchor {
+				anchor-name: --anchor
 			}

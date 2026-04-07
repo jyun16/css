@@ -253,6 +253,21 @@ a {
 	user-select: none;
 }
 
+button,input[type='button'],input[type='submit'] {
+	@include iconText;
+	display: inline-flex;
+	justify-content: center;
+	gap: .2rem;
+	cursor: pointer;
+	background: #6495ed;
+	&.primary {
+		background: #3cb371;
+	}
+	&.secondary {
+		background: #808080;
+	}
+}
+
 @mixin cardHF {
 	@include iconText;
 	position: relative;
@@ -292,6 +307,7 @@ a {
 	min-height: 0;
 	border: 1px solid v.$color;
 	border-radius: .5rem;
+	background: v.$bgColor;
 	.header { @include cardHF; }
 	.body {
 		@include scrollbar;
@@ -319,25 +335,67 @@ a {
 	grid-auto-rows: 400px;
 }
 
-button,input[type='button'],input[type='submit'] {
-	@include iconText;
-	display: inline-flex;
-	justify-content: center;
-	gap: .2rem;
-	cursor: pointer;
-	&.primary {
-		background: cornflowerblue;
+.border {
+	border: solid #f00 1px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	@extend .form-preview;
+	input, textarea {
+		font-size: 1rem;
+		padding: .5rem;
+		background: v.$color;
+		color: v.$bgColor;
+		border-radius: 5px;
+		user-select: none;
+		&[type='radio'], &[type='checkbox'] {
+			margin: 0 .5rem;
+		}
 	}
-	&.secondary {
-		background: gray;
-	}
-	&:focus {
-		border: 1px solid #f00;
+	select { margin-bottom: 1rem; }
+	.f { margin-bottom: 1rem; }
+	&.search {
+		input, textarea {
+			padding: .2rem .5rem;
+			margin: 0 .2rem;
+		}
+		button,input[type='button'],input[type='submit'] {
+			padding: .2rem 1rem;
+			margin: 0 .2rem;
+			height: 31px;
+		}
 	}
 }
 
-.border {
-	border: solid #f00 1px;
+.form-preview {
+	.label {
+		color: v.$color;
+		font-weight: bold;
+		&:not(:first-child) {
+			margin-top: 1rem;
+		}
+		span.required {
+			padding-left: .25rem;
+			color: red;
+		}
+	}
+	.value {
+		padding-left: 2rem;
+	}
+}
+
+input {
+	accent-color: v.$bgColor;
+}
+
+button, input, textarea, .body {
+  &:focus-visible {
+    outline: 2px solid v.$focusColor;
+    outline-offset: -2px;
+  }
 }
 
 .table {

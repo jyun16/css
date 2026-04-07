@@ -1,6 +1,5 @@
 extends ./_layout/navi.pug
 block head
-	link(href='/css/form.min.css' rel='stylesheet')
 	script(src='/js/select-pure/select-pure.min.js')
 	link(href='/js/select-pure/select-pure.min.css' rel='stylesheet')
 block vars
@@ -16,26 +15,27 @@ block contents
 		.label RADIO
 		.fv
 			label
-				input(type='radio')
+				input(type='radio' name='radio' checked)
 				span ONE
 			label
-				input(type='radio')
+				input(type='radio' name='radio')
 				span TWO
 			label
-				input(type='radio')
+				input(type='radio' name='radio')
 				span THREE
 		.label CHECKBOX
 		.fv
 			label
-				input(type='checkbox')
+				input(type='checkbox' checked)
 				span ONE
 			label
-				input(type='checkbox')
+				input(type='checkbox' checked)
 				span TWO
 			label
 				input(type='checkbox')
 				span THREE
 		.f-c
+			button BUTTON
 			button.primary SUBMIT
 			button.secondary.ml-2 CANCEL
 	script.

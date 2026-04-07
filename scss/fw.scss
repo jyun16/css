@@ -12,15 +12,11 @@ body {
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
 }
-button, input, select, textarea {
-  border: none;
-  background: none;
-  outline: none;
-  appearance: none;
-}
 button, input, select, textarea, dialog {
+  border: none;
   font-family: inherit;
   color: inherit;
+  background: transparent;
 }
 
 @mixin scrollbar {
