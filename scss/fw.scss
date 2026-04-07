@@ -1,5 +1,11 @@
 @use 'sass:math';
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 @mixin scrollbar {
 	&::-webkit-scrollbar {
 		width: 8px;
@@ -130,24 +136,13 @@
 	height: 100%;
 }
 
-.vh100 {
-	height: 100vh;
-}
-
-.h100 {
-	height: 100%;
-}
-
-.lh100 {
-	& > * {
-		height: 100%;
-	}
-}
-
-.rh100 {
-	& * {
-		height: 100%;
-	}
+.w-auto { width: auto !important; }
+.h-auto { height: auto !important; }
+@for $i from 1 through 10 {
+	.vh#{$i}0 { height: $i * 10vh; }
+	.h#{$i}0 { height: $i * 10%; }
+	.vw#{$i}0 { width: $i * 10vw; }
+	.w#{$i}0 { width: $i * 10%; }
 }
 
 $borderColors: (
@@ -254,14 +249,6 @@ $media: (
 	}
 }
 
-.none {
-	display: none;
-}
-
-.pointer {
-	cursor: pointer;
-}
-
-.select-none {
-	user-select: none;
-}
+.hide { display: none; }
+.pointer { cursor: pointer; }
+.select-none { user-select: none; }

@@ -1,49 +1,59 @@
-
 extends ./_layout/navi.pug
 block vars
 	- const title = 'DIALOG'
 block contents
-	.panel
-		.header
-			.left: span.icon person
-			| DIALOG TITLE
-			.right: span.icon close#close_btn
-		.body
-			p= 'DIALOG CONTENT '.repeat(50)
-		.footer.fc
-			button#ok_btn OK
-	button#open_btn OPEN
-	dialog#test_dialog.dialog
-		.g-card
-			.header
-				.left: span.icon person
-				| DIALOG TITLE
-				.right: span.icon close#close_btn
-			.body
-				p= 'DIALOG CONTENT '.repeat(50)
-			.footer
-				button#ok_btn OK
+	.fc
+		button.primary#open
+			span.icon launch
+			span OPEN
+		dialog#dialog.vw30(autofocus)
+			.card.vh30
+				.header
+					span.icon person
+					span= 'INFO'.repeat(10)
+					.right
+						span.close.icon close
+				.body
+					p= '0123456789'.repeat(500)
+				.footer
+					button.primary.close CLOSE
 	script.
-		const d = document.getElementById('test_dialog')
-		const open = document.getElementById('open_btn')
-		const close = document.getElementById('close_btn')
-		const ok = document.getElementById('ok_btn')
-		open.onclick = () => d.showModal()
-		const hide = () => d.close()
-		close.onclick = hide
-		ok.onclick = hide
-		d.onclick = (e) => {
-			if (e.target === d) d.close()
-		}
+		const d = console.log
+		const $open = $('#open')
+		const $close = $('.close')
+		const $dialog = $('#dialog')
+
+		$open.click(() => {
+			$dialog[0].showModal()
+		})
+
+		$close.click(() => {
+			$dialog[0].close()
+		})
+
+		$dialog[0].showModal()
+
 	style
 		:scss
-			.dialog {
-				padding: 0;
-				border: 1px solid #ccc;
-				border-radius: .5rem;
-				width: 90%;
-				max-width: 500px;
-				background: #fff;
+			dialog {
+				margin: auto;
+				inset: 0;
+				padding: 0 !important;
+				border: none !important;
+				outline: none !important;
+				box-shadow: none !important;
+				background: transparent;
+				&:focus {
+					outline: none !important;
+					box-shadow: none !important;
+				}
+				&:focus-visible {
+					outline: none !important;
+					box-shadow: none !important;
+				}
+				.card {
+					border: none;
+				}
 				&::backdrop {
 					background: rgba(0, 0, 0, .5);
 				}

@@ -1,8 +1,24 @@
 @use 'sass:color';
 @use './var' as v;
 
-* {
-	box-sizing: border-box;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+button, input, select, textarea {
+  border: none;
+  background: none;
+  outline: none;
+  appearance: none;
+}
+button, input, select, textarea, dialog {
+  font-family: inherit;
+  color: inherit;
 }
 
 .icon {
@@ -222,17 +238,6 @@ a {
 	}
 }
 
-button,input[type='button'],input[type='submit'] {
-	padding: .3rem 1rem;
-	border-radius: 5px;
-	&.primary {
-		background: cornflowerblue;
-	}
-	&.secondary {
-		background: gray;
-	}
-}
-
 @mixin scrollbar {
 	&::-webkit-scrollbar {
 		width: 14px;
@@ -255,24 +260,27 @@ button,input[type='button'],input[type='submit'] {
 	word-break: break-all;
 	overflow-y: scroll;
 	min-height: 0;
-	padding: .5em;
 	border: 1px solid v.$color;
 }
 
-@mixin headerFooter {
-	position: relative;
-	padding: 0 2.2rem;
-	line-height: 2.2rem;
-	text-align: center;
+@mixin iconText {
+	padding: 0 1rem;
+	margin: .2rem;
+	border-radius: 5px;
+	line-height: 2rem;
 	font-size: 1.2rem;
 	font-weight: bold;
 	user-select: none;
+}
+
+@mixin cardHF {
+	@include iconText;
+	position: relative;
+	padding: 0 2rem;
+	text-align: center;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	.icon {
-		align-items: center;
-  }
 	.left, .right {
 		position: absolute;
 		top: 0;
@@ -284,27 +292,35 @@ button,input[type='button'],input[type='submit'] {
 			margin: 0;
 		}
 	}
-	.left { left: .3rem; }
-	.right { right: .3rem; }
+	.left {
+		left: .4rem;
+	}
+	.right {
+		right: .4rem;
+		.icon {
+			cursor: pointer;
+		}
+	}
 	> :not(.left):not(.right) {
 		vertical-align: middle;
 	}
 }
 
-.panel {
-	flex-grow: 1;
-	padding: .5rem;
+.card {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: 0;
 	border: 1px solid v.$color;
 	border-radius: .5rem;
-	.header { @include headerFooter; }
+	.header { @include cardHF; }
 	.body {
 		@include scrollbar;
-		max-height: 50vh;
 		padding-left: .5rem;
 		overflow-y: scroll;
 		word-break: break-all;
+		max-height: 50vh;
 	}
-	.footer { @include headerFooter; }
+	.footer { @include cardHF; }
 }
 
 .g {
@@ -312,55 +328,18 @@ button,input[type='button'],input[type='submit'] {
 	gap: .5rem;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	grid-auto-rows: 400px;
-	.g-card {
-		display: grid;
-		grid-template-rows: auto 1fr auto;
-		height: 100%;
-		min-height: 0;
-		border: 1px solid #ccc;
-		border-radius: .5rem;
-		.header { @include headerFooter; }
-		.body {
-			@include scrollbar;
-			padding-left: .5rem;
-			overflow-y: scroll;
-			word-break: break-all;
-		}
-		.footer { @include headerFooter; }
-	}
 }
 
-.card {
-	padding: .5rem;
-	height: calc(100% - .5rem);
-	margin: 1rem .5rem;
-	border: 1px solid v.$color;
-	border-radius: .5rem;
-	.header {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 1.2rem;
-		font-weight: bold;
-		position: relative;
-		user-select: none;
-		.left {
-			position: absolute;
-			display: flex;
-			align-items: center;
-			left: .2rem;
-		}
-		.right {
-			position: absolute;
-			display: flex;
-			align-items: center;
-			right: .2rem;
-		}
+button,input[type='button'],input[type='submit'] {
+	@include iconText;
+	display: inline-flex;
+	justify-content: center;
+	gap: .2rem;
+	&.primary {
+		background: cornflowerblue;
 	}
-	.body {
-		height: 400px;
-		overflow-y: auto;
-		@include scrollbar;
+	&.secondary {
+		background: gray;
 	}
 }
 

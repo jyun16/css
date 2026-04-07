@@ -1,16 +1,15 @@
 extends ./_layout/base.pug
-block head
-	link(href='/css/form.min.css' rel='stylesheet')
 block vars
 	- const title = 'LOGIN'
 block body
-	.fm.vh100.p-8
-		.panel
+	.fm.fac.vh100
+		.card.w80
 			.header LOGIN
-			form
-				.label User ID
-				input(name='userid' placeholder='User ID')
-				.label Password
-				input(name='password' placeholder='Password')
-				.fc.mt-3
-					button.primary LOGIN
+			.body
+				form
+					.label User ID
+					input(name='userid' placeholder='User ID')
+					.label Password
+					input(name='password' placeholder='Password')
+					.fc.mt-3
+						button.primary LOGIN

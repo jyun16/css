@@ -1,32 +1,35 @@
-
 extends ./_layout/navi.pug
 block vars
-	- const title = 'DIALOG'
+	- const title = 'CARD'
 block contents
-	// .g
-	// 	.g-card
-	// 		.header
-	// 			.left
-	// 				span.icon share
-	// 			span.icon person
-	// 			span= 'HEADER'.repeat(10)
-	// 			.right
-	// 				span.icon key_vertical
-	// 		.body
-	// 			p= '0123456789'.repeat(200)
-	// 		.footer FOOTER
-	.fm.vh100
-		.panel
-			.header
-				.left
-					span.icon share
-				span.icon person
-				span= 'HEADER'.repeat(10)
-				.right
-					span.icon key_vertical
-			.body
-				p= '0123456789'.repeat(500)
-			.footer FOOTER
-	script.
+	- const type = 'card-full'
+	// - const type = 'card'
+	if type == 'card-full'
+		.fm.fac.h100
+			.card.h100
+				.header
+					.left
+						span.icon share
+					span.icon person
+					span= 'HEADER'.repeat(10)
+					.right
+						span.icon key_vertical
+				.body.border
+					p= '0123456789'.repeat(500)
+				.footer FOOTER
+	else if type == 'card'
+		.fm.fac.h100
+			.card.w30.h30
+				.header
+					.left
+						span.icon share
+					span.icon person
+					span= 'HEADER'.repeat(10)
+					.right
+						span.icon key_vertical
+				.body
+					p= '0123456789'.repeat(500)
+				.footer FOOTER
+	-
 	style
 		:scss
