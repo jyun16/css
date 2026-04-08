@@ -3,9 +3,16 @@ block vars
 	- const title = 'DIALOG'
 block contents
 	.fc
-		button.primary#open
-			span.icon launch
-			span OPEN
+		#g-dir
+			.h10
+				button.primary#open
+					span.icon launch
+					span OPEN
+			each _ in Array(20)
+				.h10
+					button.primary.open-sticky-dialog
+						span.icon launch
+						span OPEN
 		dialog#dialog.vw30(autofocus)
 			.card.vh30
 				.header
@@ -17,14 +24,6 @@ block contents
 					p= '0123456789'.repeat(500)
 				.footer
 					button.primary.close(autofocus) CLOSE
-	.fc.fb.h40
-		button.primary.open-sticky-dialog
-			span.icon launch
-			span OPEN
-	.fc.fb.h50
-		button.primary.open-sticky-dialog
-			span.icon launch
-			span OPEN
 	script.
 		const d = console.log
 		const $dialog = $('#dialog')
@@ -34,7 +33,7 @@ block contents
 			$dialog[0].blur()
 		})
 		$('.open-sticky-dialog').click(e => {
-			$('.open-sticky-dialog').removeClass('dialog-anchor')
+			$('.dialog-anchor').removeClass('dialog-anchor') 
 			$(e.currentTarget).addClass('dialog-anchor')
 			$dialog.addClass('sticky-dialog')
 			$dialog[0].showModal();
@@ -42,23 +41,24 @@ block contents
 		$('.close').click(() => {
 			$dialog[0].close()
 		})
-		// $('.open-btn').click((e) => {
-		// 	const $dialog = $('#dialog')
-		// 	let top = e.clientY
-		// 	let left = e.clientX
-		// 	const h = $dialog.outerHeight()
-		// 	const w = $dialog.outerWidth()
-		// 	if (top + h > $(window).height()) {
-		// 		top = e.clientY - h
-		// 	}
-		// 	if (left + w > $(window).width()) {
-		// 		left = e.clientX - w
-		// 	}
-		// 	$dialog.css({ top: top + 'px', left: left + 'px' })
-		// 	$dialog[0].showModal()
-		// })
+		$('dialog').click(function(e) {
+			if (e.target === this) { this.close() }
+		})
 	style
 		:scss
+			#g-dir {
+				display: grid;
+				justify-items: center;
+				grid-template-columns: repeat(3, 1fr);
+				grid-auto-rows: 1fr;
+				width: 100%;
+				height: 200vh;
+				gap: 0.5rem;
+				padding: 0.5rem;
+				overflow-y: auto;
+				& > :nth-child(3n+1) { justify-self: start; }
+				& > :nth-child(3n)	 { justify-self: end; }
+			}
 			#dialog {
 				margin: auto;
 				.body {
@@ -70,11 +70,12 @@ block contents
 			}
 			.sticky-dialog {
 				position: fixed;
-				margin: 0 !important;
+				max-width: 90vw;
+				max-height: 80vh;
+				margin: 10px 0 !important;
 				position-anchor: --anchor;
-				top: anchor(bottom);
-				left: anchor(left);
-				position-try-fallbacks: flip-block, flip-inline;
+				position-area: bottom span-right;
+				position-try-fallbacks: bottom span-left, top span-left;
 			}
 			.dialog-anchor {
 				anchor-name: --anchor

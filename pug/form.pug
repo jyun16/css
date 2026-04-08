@@ -1,5 +1,5 @@
 extends ./_layout/navi.pug
-block head
+block append head
 	script(src='/js/select-pure/select-pure.min.js')
 	link(href='/js/select-pure/select-pure.min.css' rel='stylesheet')
 block vars
@@ -34,17 +34,35 @@ block contents
 			label
 				input(type='checkbox')
 				span THREE
-		.f-c
+		.label CALENDAR
+		input#calendar-open
+		dialog#calendar
+			.card
+				.header
+					span.icon.pointer arrow_left
+					span.pointer 2026/01
+					span.icon.pointer arrow_right
+				.body
+					- for (let n=1; n<=30; n++) 
+						div #{n}
+				.footer
+					button 今日
+		.label RICH SELECT
+		#rich-select
+			.item ほげほげ
+			.item ふがふが
+		.fc
 			button BUTTON
 			button.primary SUBMIT
 			button.secondary.ml-2 CANCEL
 	script.
+		const d = console.log
 		new SelectPure('#select', {
 			options: [
-				{ 'label': 'ほげ', 'value': '1' },
-				{ 'label': 'ふが', 'value': '2' },
-				{ 'label': 'ふー', 'value': '3' },
-				{ 'label': 'ばー', 'value': '4' },
+				{ 'label': 'ほげほげ', 'value': '1' },
+				{ 'label': 'ふがふが', 'value': '2' },
+				{ 'label': 'ふーふー', 'value': '3' },
+				{ 'label': 'ばーばー', 'value': '4' },
 			],
 			value: [ '1', '2', '3' ],
 			multiple: true,
@@ -53,3 +71,61 @@ block contents
 				console.log(v)
 			},
 		})
+		const $cal = $('#calendar')
+		$('#calendar-open').click(() => {
+			$cal[0].showModal();
+		})
+		$('dialog').click(function(e) {
+			if (e.target === this) { this.close() }
+		})
+	style
+		:scss
+			#calendar-open {
+				anchor-name: --calendar
+			}
+			#calendar {
+				&::backdrop {
+					background: rgba(0, 0, 0, 0.6);
+				}
+				position: fixed;
+				margin: 2px 0 !important;
+				max-width: 280px;
+				max-height: 320px;
+				position-anchor: --calendar;
+				position-area: top;
+				position-try-fallbacks: bottom;
+				.body {
+					display: grid;
+					grid-template-columns: repeat(7, 1fr);
+					gap: .2rem;
+					> div {
+						display: flex;
+						justify-content: center;
+						width: 2rem;
+					}
+				}
+			}
+			#rich-select {
+				display: flex;
+				height: 2.5rem;
+				padding: .5rem;
+				background: #fff;
+				border-radius: 5px;
+				user-select: none;
+				align-items: center;
+				gap: .4rem;
+				.item {
+					color: #fff;
+					background: #5e6264;
+					padding: .2rem .3rem .3rem .4rem;
+					border-radius: .2rem;
+					&::after {
+						content: 'close';
+						font-family: 'Material Symbols Outlined';
+						line-height: 1rem;
+						font-size: 1.4rem;
+						vertical-align: -.3rem;
+						cursor: pointer;
+					}
+				}
+			}

@@ -1,14 +1,11 @@
 extends ./base.pug
-block head
-	link(href='/css/fw.min.css' rel='stylesheet')
-	link(href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0' rel='stylesheet')
 block body
 	#modal-bg
 	-
 		const MENU = {
 			'/card.html': 'Card',
 			'/grid.html': 'Grid',
-			'/flex.html': 'Flex',
+			// '/flex.html': 'Flex',
 			'/dialog.html': 'Dialog',
 			'/form.html': 'Form',
 			'/table/body_scroll.html': 'Table',
@@ -24,8 +21,6 @@ block body
 					span#menu-button.material-icons-outlined menu
 				a(href='/').header-icon
 					img#logo(src='/favicon.ico')
-				a(href='/').header-icon
-					span.material-icons-outlined home
 				each text, url in MENU
 					a(href=url).header-icon= text
 			#header-right.f
