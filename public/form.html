@@ -99,10 +99,10 @@ EXAMPLE"></textarea>
               </label>
             </div>
             <div class="label">CALENDAR</div>
-            <input id="calendar-open">
-            <dialog id="calendar">
+            <input id="calendar">
+            <dialog id="calendar-dialog">
               <div class="card">
-                <div class="header"><span class="icon pointer">arrow_left</span><span class="pointer">2026/01</span><span class="icon pointer">arrow_right</span></div>
+                <div class="header"><span class="icon pointer">arrow_left</span><span class="pointer">2026-01</span><span class="icon pointer">arrow_right</span></div>
                 <div class="body">
                   <div>1</div>
                   <div>2</div>
@@ -142,8 +142,21 @@ EXAMPLE"></textarea>
             </dialog>
             <div class="label">RICH SELECT</div>
             <div id="rich-select">
-              <div class="item">ほげほげ</div>
-              <div class="item">ふがふが</div>
+              <div class="items">
+                <div class="item"><span>ほげほげ</span><span class="icon close">close</span></div>
+                <div class="item">ふがふが<span class="icon close">close</span></div>
+              </div>
+              <dialog id="rich-select-dialog">
+                <div class="options">
+                  <div class="input">
+                    <input placeholder="...">
+                  </div>
+                  <div class="option">HOGE</div>
+                  <div class="option">FUGA</div>
+                  <div class="option">FOO</div>
+                  <div class="option">BAR</div>
+                </div>
+              </dialog>
             </div>
             <div class="fc">
               <button>BUTTON</button>
@@ -163,68 +176,116 @@ EXAMPLE"></textarea>
             	value: [ '1', '2', '3' ],
             	multiple: true,
             	autocomplete: true,
-            	onChange: v => {
-            		console.log(v)
-            	},
+            	onChange: v => { console.log(v) },
             })
-            const $cal = $('#calendar')
-            $('#calendar-open').click(() => {
-            	$cal[0].showModal();
-            })
-            $('dialog').click(function(e) {
-            	if (e.target === this) { this.close() }
-            })
+            const $cal = $('#calendar-dialog')
+            $('#calendar').click(() => { $cal[0].showModal(); })
+            $('dialog').click(function(e) { if (e.target === this) { this.close() } })
+            $('#rich-select .close').click(() => { alert('close') })
+            const $rs = $('#rich-select-dialog')
+            $('#rich-select').click(() => { $rs[0].showModal(); })
           </script>
-          <style>#calendar-open {
+          <style>#calendar {
   anchor-name: --calendar;
 }
 
-#calendar::backdrop {
-  background: rgba(0, 0, 0, 0.6);
-}
-#calendar {
+#calendar-dialog {
   position: fixed;
   margin: 2px 0 !important;
-  max-width: 280px;
-  max-height: 320px;
   position-anchor: --calendar;
   position-area: top;
   position-try-fallbacks: bottom;
+  max-width: 280px;
+  max-height: 320px;
 }
-#calendar .body {
+#calendar-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+#calendar-dialog .body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.2rem;
 }
-#calendar .body > div {
+#calendar-dialog .body > div {
   display: flex;
   justify-content: center;
   width: 2rem;
 }
 
 #rich-select {
-  display: flex;
-  height: 2.5rem;
-  padding: 0.5rem;
+  display: grid;
+  align-items: center;
   background: #fff;
   border-radius: 5px;
   user-select: none;
-  align-items: center;
-  gap: 0.4rem;
+  cursor: pointer;
+  anchor-name: --rich-select;
 }
-#rich-select .item {
+#rich-select .items {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0 0.5rem;
+  height: 2.5rem;
+}
+#rich-select .items .item {
+  display: flex;
+  align-items: center;
+  padding: 0.1rem 0.3rem 0.2rem 0.4rem;
+  height: 1.8rem;
   color: #fff;
   background: #5e6264;
-  padding: 0.2rem 0.3rem 0.3rem 0.4rem;
   border-radius: 0.2rem;
+  cursor: default;
 }
-#rich-select .item::after {
-  content: "close";
-  font-family: "Material Symbols Outlined";
-  line-height: 1rem;
-  font-size: 1.4rem;
-  vertical-align: -0.3rem;
+#rich-select .items .item .close {
   cursor: pointer;
+}
+#rich-select #rich-select-dialog {
+  position: fixed;
+  margin: 2px 0 !important;
+  position-anchor: --rich-select;
+  position-area: top;
+  position-try-fallbacks: bottom;
+  background: #fff;
+}
+#rich-select #rich-select-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+#rich-select #rich-select-dialog .options {
+  display: grid;
+  color: #444;
+  min-width: 90vw;
+  max-height: 300px;
+  overflow-y: auto;
+}
+#rich-select #rich-select-dialog .options .input {
+  position: relative;
+}
+#rich-select #rich-select-dialog .options .input input {
+  width: 100%;
+  padding-right: 2.2rem;
+  border-top: 1px solid #ccc;
+}
+#rich-select #rich-select-dialog .options .input::after {
+  position: absolute;
+  font-family: "Material Symbols Outlined";
+  content: "\e8b6";
+  top: 0.2rem;
+  right: 10px;
+  color: #999;
+  font-size: 1.5rem;
+  pointer-events: none;
+}
+#rich-select #rich-select-dialog .options .option {
+  padding: 0.2rem 0.5rem;
+  height: 2.5rem;
+  border-top: 1px solid #ccc;
+  cursor: pointer;
+}
+#rich-select #rich-select-dialog .options .option:hover {
+  color: #fff;
+  background: #444;
 }
           </style>
         </main>

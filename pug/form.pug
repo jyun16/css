@@ -35,12 +35,12 @@ block contents
 				input(type='checkbox')
 				span THREE
 		.label CALENDAR
-		input#calendar-open
-		dialog#calendar
+		input#calendar
+		dialog#calendar-dialog
 			.card
 				.header
 					span.icon.pointer arrow_left
-					span.pointer 2026/01
+					span.pointer 2026-01
 					span.icon.pointer arrow_right
 				.body
 					- for (let n=1; n<=30; n++) 
@@ -49,8 +49,20 @@ block contents
 					button 今日
 		.label RICH SELECT
 		#rich-select
-			.item ほげほげ
-			.item ふがふが
+			.items
+				.item
+					span ほげほげ
+					span.icon.close close
+				.item ふがふが
+					span.icon.close close
+			dialog#rich-select-dialog
+				.options
+					.input
+						input(placeholder='...')
+					.option HOGE
+					.option FUGA
+					.option FOO
+					.option BAR
 		.fc
 			button BUTTON
 			button.primary SUBMIT
@@ -67,33 +79,28 @@ block contents
 			value: [ '1', '2', '3' ],
 			multiple: true,
 			autocomplete: true,
-			onChange: v => {
-				console.log(v)
-			},
+			onChange: v => { console.log(v) },
 		})
-		const $cal = $('#calendar')
-		$('#calendar-open').click(() => {
-			$cal[0].showModal();
-		})
-		$('dialog').click(function(e) {
-			if (e.target === this) { this.close() }
-		})
+		const $cal = $('#calendar-dialog')
+		$('#calendar').click(() => { $cal[0].showModal(); })
+		$('dialog').click(function(e) { if (e.target === this) { this.close() } })
+		$('#rich-select .close').click(() => { alert('close') })
+		const $rs = $('#rich-select-dialog')
+		$('#rich-select').click(() => { $rs[0].showModal(); })
 	style
 		:scss
-			#calendar-open {
-				anchor-name: --calendar
-			}
 			#calendar {
-				&::backdrop {
-					background: rgba(0, 0, 0, 0.6);
-				}
+				anchor-name: --calendar;
+			}
+			#calendar-dialog {
 				position: fixed;
 				margin: 2px 0 !important;
-				max-width: 280px;
-				max-height: 320px;
 				position-anchor: --calendar;
 				position-area: top;
 				position-try-fallbacks: bottom;
+				&::backdrop { background: rgba(0, 0, 0, 0.6); }
+				max-width: 280px;
+				max-height: 320px;
 				.body {
 					display: grid;
 					grid-template-columns: repeat(7, 1fr);
@@ -106,26 +113,75 @@ block contents
 				}
 			}
 			#rich-select {
-				display: flex;
-				height: 2.5rem;
-				padding: .5rem;
+				display: grid;
+				align-items: center;
 				background: #fff;
 				border-radius: 5px;
 				user-select: none;
-				align-items: center;
-				gap: .4rem;
-				.item {
-					color: #fff;
-					background: #5e6264;
-					padding: .2rem .3rem .3rem .4rem;
-					border-radius: .2rem;
-					&::after {
-						content: 'close';
-						font-family: 'Material Symbols Outlined';
-						line-height: 1rem;
-						font-size: 1.4rem;
-						vertical-align: -.3rem;
-						cursor: pointer;
+				cursor: pointer;
+				anchor-name: --rich-select;
+				.items {
+					display: flex;
+					align-items: center;
+					gap: .3rem;
+					padding: 0 .5rem;
+					height: 2.5rem;
+					.item {
+						display: flex;
+						align-items: center;
+						padding: .1rem .3rem .2rem .4rem;
+						height: 1.8rem;
+						color: #fff;
+						background: #5e6264;
+						border-radius: .2rem;
+						cursor: default;
+						.close { cursor: pointer; }
+					}
+				}
+				#rich-select-dialog {
+					position: fixed;
+					margin: 2px 0 !important;
+					position-anchor: --rich-select;
+					position-area: top;
+					position-try-fallbacks: bottom;
+					&::backdrop { background: rgba(0, 0, 0, 0.6); }
+					background: #fff;
+					.options {
+						display: grid;
+						color: #444;
+						min-width: 90vw;
+						max-height: 300px;
+						overflow-y: auto;
+						.input {
+							position: relative;
+							input {
+								width: 100%;
+								padding-right: 2.2rem;
+								border-top: 1px solid #ccc;
+								&:focus {
+								}
+							}
+							&::after {
+								position: absolute;
+								font-family: 'Material Symbols Outlined';
+								content: '\e8b6';
+								top: .2rem;
+								right: 10px;
+								color: #999;
+								font-size: 1.5rem;
+								pointer-events: none;
+							}
+						}
+						.option {
+							padding: .2rem .5rem;
+							height: 2.5rem;
+							border-top: 1px solid #ccc;
+							cursor: pointer;
+							&:hover {
+								color: #fff;
+								background: #444;
+							}
+						}
 					}
 				}
 			}
