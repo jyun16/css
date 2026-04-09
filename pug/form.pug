@@ -6,6 +6,18 @@ block vars
 	- const title = 'FORM'
 block contents
 	form
+		.label DATE
+		.j-date
+			input.year(type='text' inputmode='numeric' pattern='\d*' maxlength='4' placeholder='yyyy')
+			span -
+			input.month(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='mm')
+			span -
+			input.day(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='dd')
+		.label TIME
+		.j-time
+			input.hour(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='HH')
+			span :
+			input.minute(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='MM')
 		.label INPUT
 		input(placeholder='EXAMPLE')
 		.label TEXTAREA
@@ -55,20 +67,112 @@ block contents
 					span.icon.close close
 				.item ふがふが
 					span.icon.close close
-			dialog#rich-select-dialog
-				.options
-					.input
-						input(placeholder='...')
-					.option HOGE
-					.option FUGA
-					.option FOO
-					.option BAR
+		dialog#rich-select-dialog
+			.input
+				input(placeholder='...')
+			.option HOGE
+			.option FUGA
+			.option FOO
+			.option BAR
 		.fc
 			button BUTTON
 			button.primary SUBMIT
 			button.secondary.ml-2 CANCEL
 	script.
 		const d = console.log
+
+		$('.j-time input').on('focus', function() {
+			this.select()
+		})
+		$('.j-time input').on('keydown', function(e) {
+			let isHour = $(this).hasClass('hour')
+			let max = isHour ? 23 : 59
+			let val = parseInt(this.value || 0)
+			if (e.key === 'ArrowUp') {
+				e.preventDefault()
+				val = val >= max ? 0 : val + 1
+				this.value = String(val).padStart(2, '0')
+				this.select()
+			}
+			else if (e.key === 'ArrowDown') {
+				e.preventDefault()
+				val = val <= 0 ? max : val - 1
+				this.value = String(val).padStart(2, '0')
+				this.select()
+			}
+			else if (e.key === 'ArrowRight' && isHour && this.selectionStart === this.value.length) {
+				e.preventDefault()
+				$(this).nextAll('input').focus()
+			}
+			else if ((e.key === 'ArrowLeft' || e.key === 'Backspace') && !isHour && this.selectionStart === 0) {
+				e.preventDefault()
+				$(this).prevAll('input').focus()
+			}
+		})
+		$('.j-time input').on('input', function() {
+			this.value = this.value.replace(/\D/g, '')
+			if (this.value.length === 2 && $(this).hasClass('hour')) {
+				$(this).nextAll('input').focus()
+			}
+		})
+		$('.j-time input').on('blur', function() {
+			if (this.value) {
+				let isHour = $(this).hasClass('hour')
+				let max = isHour ? 23 : 59
+				let v = parseInt(this.value)
+				if (v > max) v = max
+				this.value = String(v).padStart(2, '0')
+			}
+		})
+
+		$('.j-date input').on('focus', function() {
+			this.select()
+		})
+		$('.j-date input').on('keydown', function(e) {
+			let $this = $(this)
+			let val = parseInt(this.value || 0)
+			if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+				e.preventDefault()
+				let isYear = $this.hasClass('year')
+				let isMonth = $this.hasClass('month')
+				let step = (e.key === 'ArrowUp') ? 1 : -1
+				if (isYear) {
+					val += step
+				}
+				else if (isMonth) {
+					val = (val + step - 1 + 12) % 12 + 1
+				}
+				else {
+					val = (val + step - 1 + 31) % 31 + 1
+				}
+				this.value = isYear ? val : String(val).padStart(2, '0')
+				this.select()
+			}
+			else if (e.key === 'ArrowRight' && this.selectionStart === this.value.length) {
+				$this.nextAll('input').first().focus()
+			}
+			else if ((e.key === 'ArrowLeft' || e.key === 'Backspace') && this.selectionStart === 0) {
+				$this.prevAll('input').first().focus()
+			}
+		})
+		$('.j-date').on('input', function() {
+			this.value = this.value.replace(/\D/g, '')
+			let limit = $(this).hasClass('year') ? 4 : 2
+			if (this.value.length >= limit) {
+				$(this).nextAll('input').first().focus()
+			}
+		})
+		$('.j-date input').on('blur', function() {
+			if (this.value) {
+				let isYear = $this.hasClass('year')
+				let isMonth = $this.hasClass('month')
+				d(this.value)
+				let v = parseInt(this.value)
+				if (isYear && v < 1900) v = 1900
+				this.value = String(v).padStart(2, '0')
+			}
+		})
+
 		new SelectPure('#select', {
 			options: [
 				{ 'label': 'ほげほげ', 'value': '1' },
@@ -83,24 +187,72 @@ block contents
 		})
 		const $cal = $('#calendar-dialog')
 		$('#calendar').click(() => { $cal[0].showModal(); })
-		$('dialog').click(function(e) { if (e.target === this) { this.close() } })
 		$('#rich-select .close').click(() => { alert('close') })
 		const $rs = $('#rich-select-dialog')
 		$('#rich-select').click(() => { $rs[0].showModal(); })
+		$('dialog').click(function(e) { if (e.target === this) { this.close() } })
 	style
 		:scss
+			input.time {
+				width: 3.5rem;
+			}
+
+			.j-time {
+				display: inline-flex;
+				align-items: center;
+				width: 4.7rem;
+				height: 2.5rem;
+				padding: .2rem .4rem;
+				color: #444;
+				background: #fff;
+				border-radius: 4px;
+				cursor: text;
+				input {
+					width: 1.8rem;
+					padding: 0;
+					text-align: center;
+					background: transparent;
+					border: none;
+					outline: none;
+				}
+			}
+
+			.j-date {
+				display: inline-flex;
+				align-items: center;
+				width: 8rem;
+				height: 2.5rem;
+				padding: .2rem .4rem;
+				color: #444;
+				background: #fff;
+				border-radius: 4px;
+				cursor: text;
+				input {
+					&.year { width: 2.6rem; }
+					&.month { width: 2.2rem; }
+					&.day { width: 1.8rem; }
+					padding: 0;
+					text-align: center;
+					background: transparent;
+					border: none;
+					outline: none;
+				}
+			}
+
 			#calendar {
 				anchor-name: --calendar;
 			}
 			#calendar-dialog {
 				position: fixed;
-				margin: 2px 0 !important;
 				position-anchor: --calendar;
 				position-area: top;
 				position-try-fallbacks: bottom;
-				&::backdrop { background: rgba(0, 0, 0, 0.6); }
 				max-width: 280px;
 				max-height: 320px;
+				margin: 2px 0 !important;
+				&::backdrop {
+					background: rgba(0, 0, 0, 0.6);
+				}
 				.body {
 					display: grid;
 					grid-template-columns: repeat(7, 1fr);
@@ -112,76 +264,80 @@ block contents
 					}
 				}
 			}
+
 			#rich-select {
+				anchor-name: --rich-select;
 				display: grid;
 				align-items: center;
 				background: #fff;
 				border-radius: 5px;
-				user-select: none;
 				cursor: pointer;
-				anchor-name: --rich-select;
+				user-select: none;
 				.items {
 					display: flex;
 					align-items: center;
 					gap: .3rem;
-					padding: 0 .5rem;
 					height: 2.5rem;
+					padding: 0 .5rem;
 					.item {
 						display: flex;
 						align-items: center;
-						padding: .1rem .3rem .2rem .4rem;
 						height: 1.8rem;
+						padding: .1rem .3rem .2rem .4rem;
 						color: #fff;
 						background: #5e6264;
 						border-radius: .2rem;
 						cursor: default;
-						.close { cursor: pointer; }
+						.close {
+							cursor: pointer;
+						}
 					}
 				}
-				#rich-select-dialog {
-					position: fixed;
-					margin: 2px 0 !important;
-					position-anchor: --rich-select;
-					position-area: top;
-					position-try-fallbacks: bottom;
-					&::backdrop { background: rgba(0, 0, 0, 0.6); }
-					background: #fff;
-					.options {
-						display: grid;
-						color: #444;
-						min-width: 90vw;
-						max-height: 300px;
-						overflow-y: auto;
-						.input {
-							position: relative;
-							input {
-								width: 100%;
-								padding-right: 2.2rem;
-								border-top: 1px solid #ccc;
-								&:focus {
-								}
-							}
-							&::after {
-								position: absolute;
-								font-family: 'Material Symbols Outlined';
-								content: '\e8b6';
-								top: .2rem;
-								right: 10px;
-								color: #999;
-								font-size: 1.5rem;
-								pointer-events: none;
-							}
+			}
+			#rich-select-dialog {
+				position: fixed;
+				position-anchor: --rich-select;
+				position-area: bottom;
+				position-try-fallbacks: top;
+				width: anchor-size(width);
+				max-height: 300px;
+				margin: 2px 0 !important;
+				overflow-y: auto;
+				color: #444;
+				background: #fff;
+				border-radius: .5rem;
+				&::backdrop {
+					background: rgba(0, 0, 0, 0.6);
+				}
+				.input {
+					position: relative;
+					input {
+						width: 100%;
+						padding-right: 2.2rem;
+						border-top: 1px solid #ccc;
+						&:focus-visible {
+							outline: none;
 						}
-						.option {
-							padding: .2rem .5rem;
-							height: 2.5rem;
-							border-top: 1px solid #ccc;
-							cursor: pointer;
-							&:hover {
-								color: #fff;
-								background: #444;
-							}
-						}
+					}
+					&::after {
+						content: '\e8b6';
+						font-family: 'Material Symbols Outlined';
+						position: absolute;
+						top: .2rem;
+						right: 10px;
+						font-size: 1.5rem;
+						color: #999;
+						pointer-events: none;
+					}
+				}
+				.option {
+					height: 2.5rem;
+					padding: .2rem .5rem;
+					border-top: 1px solid #ccc;
+					cursor: pointer;
+					&:hover {
+						color: #fff;
+						background: #444;
 					}
 				}
 			}
