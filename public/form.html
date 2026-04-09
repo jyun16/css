@@ -67,22 +67,22 @@
         </div>
         <main>
           <form>
+            <div class="label">INPUT</div>
+            <input placeholder="EXAMPLE">
+            <div class="label">TEXTAREA</div>
+            <textarea placeholder="EXAMPLE
+EXAMPLE"></textarea>
+            <div class="label">TIME</div>
+            <div class="j-time">
+              <input class="hour" type="text" inputmode="numeric" pattern="d*" maxlength="2" placeholder="HH"><span>:</span>
+              <input class="minute" type="text" inputmode="numeric" pattern="d*" maxlength="2" placeholder="MM">
+            </div>
             <div class="label">DATE</div>
             <div class="j-date">
               <input class="year" type="text" inputmode="numeric" pattern="d*" maxlength="4" placeholder="yyyy"><span>-</span>
               <input class="month" type="text" inputmode="numeric" pattern="d*" maxlength="2" placeholder="mm"><span>-</span>
               <input class="day" type="text" inputmode="numeric" pattern="d*" maxlength="2" placeholder="dd">
             </div>
-            <div class="label">TIME</div>
-            <div class="j-time">
-              <input class="hour" type="text" inputmode="numeric" pattern="d*" maxlength="2" placeholder="HH"><span>:</span>
-              <input class="minute" type="text" inputmode="numeric" pattern="d*" maxlength="2" placeholder="MM">
-            </div>
-            <div class="label">INPUT</div>
-            <input placeholder="EXAMPLE">
-            <div class="label">TEXTAREA</div>
-            <textarea placeholder="EXAMPLE
-EXAMPLE"></textarea>
             <div class="label">SELECT</div>
             <div id="select"></div>
             <div class="label">RADIO</div>
@@ -224,7 +224,7 @@ EXAMPLE"></textarea>
             	this.select()
             })
             $('.j-date input').on('keydown', function(e) {
-            	let $this = $(this)
+            	const $this = $(this)
             	let val = parseInt(this.value || 0)
             	if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
             		e.preventDefault()
@@ -250,7 +250,7 @@ EXAMPLE"></textarea>
             		$this.prevAll('input').first().focus()
             	}
             })
-            $('.j-date').on('input', function() {
+            $('.j-date input').on('input', function() {
             	this.value = this.value.replace(/\D/g, '')
             	let limit = $(this).hasClass('year') ? 4 : 2
             	if (this.value.length >= limit) {
@@ -258,14 +258,21 @@ EXAMPLE"></textarea>
             	}
             })
             $('.j-date input').on('blur', function() {
-            	if (this.value) {
-            		let isYear = $this.hasClass('year')
-            		let isMonth = $this.hasClass('month')
-            		d(this.value)
-            		let v = parseInt(this.value)
-            		if (isYear && v < 1900) v = 1900
-            		this.value = String(v).padStart(2, '0')
+            	const $parent = $(this).closest('.j-date')
+            	const y = parseInt($parent.find('.year').val()) || new Date().getFullYear()
+            	const m = parseInt($parent.find('.month').val()) || 1
+            	const d = parseInt($parent.find('.day').val()) || 1
+            	let mm = Math.max(1, Math.min(12, m))
+            	let tempDate = new Date(y, mm - 1, d)
+            	if (tempDate.getMonth() + 1 !== mm) {
+            		tempDate = new Date(y, mm, 0)
             	}
+            	const finalY = Math.max(1900, y)
+            	const finalM = tempDate.getMonth() + 1
+            	const finalD = tempDate.getDate()
+            	$parent.find('.year').val(finalY)
+            	$parent.find('.month').val(String(finalM).padStart(2, '0'))
+            	$parent.find('.day').val(String(finalD).padStart(2, '0'))
             })
             
             new SelectPure('#select', {
@@ -294,9 +301,9 @@ EXAMPLE"></textarea>
 .j-time {
   display: inline-flex;
   align-items: center;
-  width: 4.7rem;
+  width: 4.4rem;
   height: 2.5rem;
-  padding: 0.2rem 0.4rem;
+  padding: 0.2rem 0.2rem;
   color: #444;
   background: #fff;
   border-radius: 4px;
@@ -322,6 +329,13 @@ EXAMPLE"></textarea>
   border-radius: 4px;
   cursor: text;
 }
+.j-date input {
+  padding: 0;
+  text-align: center;
+  background: transparent;
+  border: none;
+  outline: none;
+}
 .j-date input.year {
   width: 2.6rem;
 }
@@ -330,13 +344,6 @@ EXAMPLE"></textarea>
 }
 .j-date input.day {
   width: 1.8rem;
-}
-.j-date input {
-  padding: 0;
-  text-align: center;
-  background: transparent;
-  border: none;
-  outline: none;
 }
 
 #calendar {

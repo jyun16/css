@@ -6,6 +6,15 @@ block vars
 	- const title = 'FORM'
 block contents
 	form
+		.label INPUT
+		input(placeholder='EXAMPLE')
+		.label TEXTAREA
+		textarea(placeholder='EXAMPLE\nEXAMPLE')
+		.label TIME
+		.j-time
+			input.hour(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='HH')
+			span :
+			input.minute(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='MM')
 		.label DATE
 		.j-date
 			input.year(type='text' inputmode='numeric' pattern='\d*' maxlength='4' placeholder='yyyy')
@@ -13,15 +22,6 @@ block contents
 			input.month(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='mm')
 			span -
 			input.day(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='dd')
-		.label TIME
-		.j-time
-			input.hour(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='HH')
-			span :
-			input.minute(type='text' inputmode='numeric' pattern='\d*' maxlength='2' placeholder='MM')
-		.label INPUT
-		input(placeholder='EXAMPLE')
-		.label TEXTAREA
-		textarea(placeholder='EXAMPLE\nEXAMPLE')
 		.label SELECT
 		#select
 		.label RADIO
@@ -129,7 +129,7 @@ block contents
 			this.select()
 		})
 		$('.j-date input').on('keydown', function(e) {
-			let $this = $(this)
+			const $this = $(this)
 			let val = parseInt(this.value || 0)
 			if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
 				e.preventDefault()
@@ -155,7 +155,7 @@ block contents
 				$this.prevAll('input').first().focus()
 			}
 		})
-		$('.j-date').on('input', function() {
+		$('.j-date input').on('input', function() {
 			this.value = this.value.replace(/\D/g, '')
 			let limit = $(this).hasClass('year') ? 4 : 2
 			if (this.value.length >= limit) {
@@ -163,14 +163,21 @@ block contents
 			}
 		})
 		$('.j-date input').on('blur', function() {
-			if (this.value) {
-				let isYear = $this.hasClass('year')
-				let isMonth = $this.hasClass('month')
-				d(this.value)
-				let v = parseInt(this.value)
-				if (isYear && v < 1900) v = 1900
-				this.value = String(v).padStart(2, '0')
+			const $parent = $(this).closest('.j-date')
+			const y = parseInt($parent.find('.year').val()) || new Date().getFullYear()
+			const m = parseInt($parent.find('.month').val()) || 1
+			const d = parseInt($parent.find('.day').val()) || 1
+			let mm = Math.max(1, Math.min(12, m))
+			let tempDate = new Date(y, mm - 1, d)
+			if (tempDate.getMonth() + 1 !== mm) {
+				tempDate = new Date(y, mm, 0)
 			}
+			const finalY = Math.max(1900, y)
+			const finalM = tempDate.getMonth() + 1
+			const finalD = tempDate.getDate()
+			$parent.find('.year').val(finalY)
+			$parent.find('.month').val(String(finalM).padStart(2, '0'))
+			$parent.find('.day').val(String(finalD).padStart(2, '0'))
 		})
 
 		new SelectPure('#select', {
@@ -200,9 +207,9 @@ block contents
 			.j-time {
 				display: inline-flex;
 				align-items: center;
-				width: 4.7rem;
+				width: 4.4rem;
 				height: 2.5rem;
-				padding: .2rem .4rem;
+				padding: .2rem .2rem;
 				color: #444;
 				background: #fff;
 				border-radius: 4px;
