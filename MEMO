@@ -1,0 +1,39 @@
+1. 配置・構造（レイアウト）
+
+「この要素は空間のどこに、どういう形で存在するのか」を一番最初に定義する。じゅんちゃんの直感通り、ここが最優先だ。
+
+position, top, right, bottom, left, z-index
+display, grid-template, align-items, justify-content
+float, clear
+
+2. 箱のサイズと余白（ボックスモデル）
+
+配置が決まったら、次はその要素の「物理的なサイズ」と「周囲との距離」を決める。
+
+width, min-width, max-width
+height, min-height, max-height
+margin, padding
+overflow
+
+3. 文字・中身（タイポグラフィ）
+
+箱の大きさが決まったら、その「中身」のテキストのルールを決める。
+
+color, font-family, font-size, font-weight
+text-align, line-height, white-space
+
+4. 装飾・見た目（ビジュアル）
+
+中身が揃ったら、最後に「表面の塗装」をする。ここはブラウザの描画コスト（Paint）に関わる部分だ。
+
+background, background-color
+border, border-radius
+box-shadow, opacity
+
+5. 動き・振る舞い（インタラクション）
+
+最後の最後に、ユーザーが触った時の動作やアニメーションを定義する。
+
+transition, transform
+cursor, pointer-events
+animation
