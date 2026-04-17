@@ -1,11 +1,10 @@
 
-extends ./_layout/navi.pug
+extends ./_layout/main.pug
 block vars
 	- const title = 'GRID'
 block contents
 	.g
-		.box= '0123456789'.repeat(200)
-		.card
+		.card(style='--height: 20vh')
 			.header
 				.left
 					span.icon share
@@ -16,20 +15,25 @@ block contents
 			.body
 				p= '0123456789'.repeat(200)
 			.footer FOOTER
-		.card
+		.card(style='--height: 20vh')
 			.header= 'HEADER'.repeat(10)
 				.right
 					span.icon key_vertical
 			.body
 				p= '0123456789'.repeat(200)
 			.footer FOOTER
-		.card
+		.card(style='--height: 20vh')
 			.header= 'HEADER'.repeat(10)
 				.left
 					span.icon share
 			.body
 				p= '0123456789'.repeat(200)
+		.card(style='--height: 20vh')
+			.body
+				p= '0123456789'.repeat(200)
 		each _ in Array(10)
-			.box 0123456789
+			.card(style='--height: 20vh')
+				.body
+					p= '0123456789'
 	style
 		:scss

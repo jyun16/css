@@ -158,7 +158,7 @@ const rmTrash = (dir, ext, toDir) => {
 
 const cu = {
 	html: cb => {
-		const ignore = [ '^css/', '^js/' ]
+		const ignore = [ '^css/', '^js/', '^fonts/', 'favicon.ico', '^js/select-pure' ]
 		const files = ls('pug').map(x => x.replace(/pug\//, ''))
 		for (let f of ls(CONF.static)) {
 			f = f.replace(CONF.static, '')

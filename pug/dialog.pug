@@ -1,4 +1,4 @@
-extends ./_layout/navi.pug
+extends ./_layout/main.pug
 block vars
 	- const title = 'DIALOG'
 block contents
@@ -14,7 +14,7 @@ block contents
 						span.icon launch
 						span OPEN
 		dialog#dialog.vw30(autofocus)
-			.card.vh30
+			.card(style='--height: 20vh')
 				.header
 					span.icon person
 					span= 'INFO'.repeat(10)

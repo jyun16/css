@@ -1,4 +1,4 @@
-extends ./_layout/navi.pug
+extends ./_layout/main.pug
 block vars
 	- const title = 'CARD'
 block contents
@@ -19,7 +19,7 @@ block contents
 				.footer FOOTER
 	else if type == 'card'
 		.fm.fac.h100
-			.card.w30.h30
+			.card.w30(style='--height: 400px')
 				.header
 					.left
 						span.icon share
