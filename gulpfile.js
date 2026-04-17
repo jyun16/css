@@ -135,6 +135,8 @@ const fileExists = file => {
 	}
 }
 
+const d = console.log
+
 const checkIgnore = (regs, str) => {
 	for (let re of regs) {
 		if ((new RegExp(re)).test(str)) {
@@ -147,9 +149,11 @@ const checkIgnore = (regs, str) => {
 const exec = cmd => cl(cmd, execSync(cmd).toString())
 
 const rmTrash = (dir, ext, toDir) => {
+	const ignore = [ '^public/js/select-pure/' ]
 	const files = ls(dir).map(f => path.basename(f).split('.')[0])
 	for (let f of ls(toDir)) {
 		const ff = path.basename(f).split('.')[0]
+		if (checkIgnore(ignore, f)) { continue }
 		if (!files.includes(ff)) {
 			exec(`rm ${f}`)
 		}
@@ -158,7 +162,7 @@ const rmTrash = (dir, ext, toDir) => {
 
 const cu = {
 	html: cb => {
-		const ignore = [ '^css/', '^js/', '^fonts/', 'favicon.ico', '^js/select-pure' ]
+		const ignore = [ '^css/', '^js/', '^fonts/', 'favicon.ico' ]
 		const files = ls('pug').map(x => x.replace(/pug\//, ''))
 		for (let f of ls(CONF.static)) {
 			f = f.replace(CONF.static, '')
