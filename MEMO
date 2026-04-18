@@ -26,7 +26,7 @@ text-align, line-height, white-space
 
 中身が揃ったら、最後に「表面の塗装」をする。ここはブラウザの描画コスト（Paint）に関わる部分だ。
 
-background, background-color
+background, background-color, appearance
 border, border-radius
 box-shadow, opacity
 
