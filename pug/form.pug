@@ -84,7 +84,7 @@ block contents
 		$('.j-time input').on('focus', function() {
 			this.select()
 		})
-		$('.j-time input').on('keydown', function(e) {
+		.on('keydown', function(e) {
 			let isHour = $(this).hasClass('hour')
 			let max = isHour ? 23 : 59
 			let val = parseInt(this.value || 0)
@@ -109,13 +109,13 @@ block contents
 				$(this).prevAll('input').focus()
 			}
 		})
-		$('.j-time input').on('input', function() {
+		.on('input', function() {
 			this.value = this.value.replace(/\D/g, '')
 			if (this.value.length === 2 && $(this).hasClass('hour')) {
 				$(this).nextAll('input').focus()
 			}
 		})
-		$('.j-time input').on('blur', function() {
+		.on('blur', function() {
 			if (this.value) {
 				let isHour = $(this).hasClass('hour')
 				let max = isHour ? 23 : 59
@@ -128,7 +128,7 @@ block contents
 		$('.j-date input').on('focus', function() {
 			this.select()
 		})
-		$('.j-date input').on('keydown', function(e) {
+		.on('keydown', function(e) {
 			const $this = $(this)
 			let val = parseInt(this.value || 0)
 			if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
@@ -155,14 +155,14 @@ block contents
 				$this.prevAll('input').first().focus()
 			}
 		})
-		$('.j-date input').on('input', function() {
+		.on('input', function() {
 			this.value = this.value.replace(/\D/g, '')
 			let limit = $(this).hasClass('year') ? 4 : 2
 			if (this.value.length >= limit) {
 				$(this).nextAll('input').first().focus()
 			}
 		})
-		$('.j-date input').on('blur', function() {
+		.on('blur', function() {
 			const $parent = $(this).closest('.j-date')
 			const y = parseInt($parent.find('.year').val()) || new Date().getFullYear()
 			const m = parseInt($parent.find('.month').val()) || 1

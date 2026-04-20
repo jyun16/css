@@ -178,7 +178,7 @@ EXAMPLE"></textarea>
             $('.j-time input').on('focus', function() {
             	this.select()
             })
-            $('.j-time input').on('keydown', function(e) {
+            .on('keydown', function(e) {
             	let isHour = $(this).hasClass('hour')
             	let max = isHour ? 23 : 59
             	let val = parseInt(this.value || 0)
@@ -203,13 +203,13 @@ EXAMPLE"></textarea>
             		$(this).prevAll('input').focus()
             	}
             })
-            $('.j-time input').on('input', function() {
+            .on('input', function() {
             	this.value = this.value.replace(/\D/g, '')
             	if (this.value.length === 2 && $(this).hasClass('hour')) {
             		$(this).nextAll('input').focus()
             	}
             })
-            $('.j-time input').on('blur', function() {
+            .on('blur', function() {
             	if (this.value) {
             		let isHour = $(this).hasClass('hour')
             		let max = isHour ? 23 : 59
@@ -222,7 +222,7 @@ EXAMPLE"></textarea>
             $('.j-date input').on('focus', function() {
             	this.select()
             })
-            $('.j-date input').on('keydown', function(e) {
+            .on('keydown', function(e) {
             	const $this = $(this)
             	let val = parseInt(this.value || 0)
             	if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
@@ -249,14 +249,14 @@ EXAMPLE"></textarea>
             		$this.prevAll('input').first().focus()
             	}
             })
-            $('.j-date input').on('input', function() {
+            .on('input', function() {
             	this.value = this.value.replace(/\D/g, '')
             	let limit = $(this).hasClass('year') ? 4 : 2
             	if (this.value.length >= limit) {
             		$(this).nextAll('input').first().focus()
             	}
             })
-            $('.j-date input').on('blur', function() {
+            .on('blur', function() {
             	const $parent = $(this).closest('.j-date')
             	const y = parseInt($parent.find('.year').val()) || new Date().getFullYear()
             	const m = parseInt($parent.find('.month').val()) || 1
@@ -328,6 +328,13 @@ EXAMPLE"></textarea>
   border-radius: 4px;
   cursor: text;
 }
+.j-date input {
+  padding: 0;
+  text-align: center;
+  background: transparent;
+  border: none;
+  outline: none;
+}
 .j-date input.year {
   width: 2.6rem;
 }
@@ -336,13 +343,6 @@ EXAMPLE"></textarea>
 }
 .j-date input.day {
   width: 1.8rem;
-}
-.j-date input {
-  padding: 0;
-  text-align: center;
-  background: transparent;
-  border: none;
-  outline: none;
 }
 
 #calendar {
