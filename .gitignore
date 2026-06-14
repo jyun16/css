@@ -17,7 +17,6 @@ screenlog.*
 !.gitkeep
 __pycache__*
 *.pyc
-pnpm-lock.yaml
 .gradle
 build
 tmpl_c
